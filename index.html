@@ -1,101 +1,130 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portfólio Profissional — Rita Leandra Augustin</title>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Portfólio Profissional — Rita Leandra Augustin</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0f13; --card:#151821; --text:#e7e9ee; --muted:#9aa3b2;
+    --brand:#7c3aed; --wmOpacity:.12; /* opacidade padrão da marca d'água */
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+    font-family:"Oswald",sans-serif;letter-spacing:.3px}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1200px;margin:auto;padding:24px}
 
-  <style>
-    :root{
-      --bg:#0e0f13; --card:#151821; --text:#e7e9ee; --muted:#9aa3b2;
-      --brand:#7c3aed; --ring:rgba(124,58,237,.35);
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
-      font-family:"Oswald",sans-serif;letter-spacing:.3px}
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:1200px;margin:auto;padding:24px}
+  header.site-header{
+    background:linear-gradient(180deg, rgba(124,58,237,.12), transparent 60%);
+    border-bottom:1px solid rgba(124,58,237,.15);
+    position:sticky;top:0;z-index:10;backdrop-filter:saturate(140%) blur(6px)
+  }
+  header .title{padding:18px 24px;margin:0;font-size:30px;font-weight:500;letter-spacing:.5px}
 
-    header.site-header{
-      background:linear-gradient(180deg, rgba(124,58,237,.12), transparent 60%);
-      border-bottom:1px solid rgba(124,58,237,.15);
-      position:sticky;top:0;z-index:10;backdrop-filter:saturate(140%) blur(6px)
-    }
-    header .title{padding:18px 24px;margin:0;font-size:30px;font-weight:500;letter-spacing:.5px}
+  /* bloco pessoal */
+  .card-personal{
+    display:flex;gap:18px;align-items:center;background:var(--card);
+    border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px 18px;margin-top:12px
+  }
+  .card-personal img{width:82px;height:82px;border-radius:50%;object-fit:cover;border:1px solid rgba(255,255,255,.12)}
+  .card-personal .name{font-size:22px;font-weight:600;letter-spacing:.4px}
+  .card-personal .role{color:var(--muted);margin-top:4px;font-size:15px}
+  .card-personal .contacts{margin-top:8px;font-size:14px;display:flex;gap:14px;flex-wrap:wrap}
+  .dot{color:var(--muted)}
 
-    .card-personal{
-      display:flex;gap:18px;align-items:center;background:var(--card);
-      border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px 18px;margin-top:12px
-    }
-    .card-personal img{width:82px;height:82px;border-radius:50%;object-fit:cover;border:1px solid rgba(255,255,255,.12)}
-    .card-personal .name{font-size:22px;font-weight:600;letter-spacing:.4px}
-    .card-personal .role{color:var(--muted);margin-top:4px;font-size:15px}
-    .card-personal .contacts{margin-top:8px;font-size:14px;display:flex;gap:14px;flex-wrap:wrap}
-    .dot{color:var(--muted)}
+  /* controles globais */
+  .controls{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:8px;flex-wrap:wrap}
+  .controls .left, .controls .right{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .controls label{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--muted)}
+  .controls select,.controls button{
+    background:var(--card);color:var(--text);
+    border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:6px 10px;cursor:pointer
+  }
+  .range{display:flex;align-items:center;gap:8px;background:var(--card);
+    border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:6px 10px;color:var(--muted)}
+  .range input[type="range"]{accent-color:#b39df7}
 
-    .controls{display:flex;gap:12px;align-items:center;justify-content:flex-end;margin-top:8px}
-    .controls label{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--muted)}
-    .controls select{
-      background:var(--card);color:var(--text);border:1px solid rgba(255,255,255,.15);
-      border-radius:10px;padding:6px 10px;cursor:pointer
-    }
+  /* seções */
+  section.topic{margin:32px 0 12px}
+  .topic h2{font-size:18px;font-weight:600;margin:0;color:#cfd6e6;letter-spacing:.4px}
+  details.group-desc{
+    margin:6px 0 12px 0;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px
+  }
+  details.group-desc[open]{border-color:rgba(255,255,255,.14)}
+  details.group-desc summary{
+    cursor:pointer;list-style:none;padding:10px 14px;user-select:none;display:flex;align-items:center;gap:10px;color:#cfd6e6
+  }
+  details.group-desc summary::-webkit-details-marker{display:none}
+  .caret{width:10px;height:10px;border-right:2px solid #cfd6e6;border-bottom:2px solid #cfd6e6;transform:rotate(-45deg);transition:transform .25s ease;margin-left:2px}
+  details.group-desc[open] .caret{transform:rotate(45deg)}
+  .desc-body{padding:0 14px 12px 42px;color:var(--muted);font-size:14px}
 
-    section.topic{margin:32px 0 12px}
-    .topic h2{font-size:18px;font-weight:600;margin:0;color:#cfd6e6;letter-spacing:.4px}
-    details.group-desc{
-      margin:6px 0 12px 0;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px
-    }
-    details.group-desc[open]{border-color:rgba(255,255,255,.14)}
-    details.group-desc summary{
-      cursor:pointer;list-style:none;padding:10px 14px;user-select:none;display:flex;align-items:center;gap:10px;color:#cfd6e6
-    }
-    details.group-desc summary::-webkit-details-marker{display:none}
-    .caret{width:10px;height:10px;border-right:2px solid #cfd6e6;border-bottom:2px solid #cfd6e6;transform:rotate(-45deg);transition:transform .25s ease;margin-left:2px}
-    details.group-desc[open] .caret{transform:rotate(45deg)}
-    .desc-body{padding:0 14px 12px 42px;color:var(--muted);font-size:14px}
+  /* galeria */
+  .strip{display:flex;gap:12px;overflow-x:auto;padding:12px;background:var(--card);
+    border:1px solid rgba(255,255,255,.06);border-radius:14px;scroll-snap-type:x proximity}
+  .thumb{position:relative;flex:0 0 auto;scroll-snap-align:start;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);max-width:260px}
+  .thumb a{display:inline-block; position:relative; line-height:0}
+  .thumb img{display:block;height:220px;width:auto;filter:blur(0.2px) saturate(0.98) contrast(1);transform:translateZ(0)}
+  .thumb .hint{position:absolute;right:8px;bottom:8px;font-size:12px;color:#cdd3e0;background:rgba(14,15,19,.6);padding:4px 6px;border-radius:8px}
+  .thumb figcaption{font-size:12px;color:var(--muted);padding:8px 10px 10px;max-width:260px}
 
-    .strip{display:flex;gap:12px;overflow-x:auto;padding:12px;background:var(--card);
-      border:1px solid rgba(255,255,255,.06);border-radius:14px;scroll-snap-type:x proximity}
-    .thumb{position:relative;flex:0 0 auto;scroll-snap-align:start;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);max-width:260px}
-    /* >>> alinhamento perfeito entre imagem e máscara nas thumbs */
-    .thumb a{display:inline-block; position:relative; line-height:0}
-    .thumb img{display:block;height:220px;width:auto;filter:blur(0.2px) saturate(0.98) contrast(1);transform:translateZ(0)}
-    .thumb .hint{position:absolute;right:8px;bottom:8px;font-size:12px;color:#cdd3e0;background:rgba(14,15,19,.6);padding:4px 6px;border-radius:8px}
-    .thumb figcaption{font-size:12px;color:var(--muted);padding:8px 10px 10px;max-width:260px}
+  /* máscara + marca d'água nas thumbs */
+  .mask{position:absolute;border-radius:6px;backdrop-filter: blur(8px) brightness(.95);-webkit-backdrop-filter: blur(8px) brightness(.95);box-shadow:0 0 0 1px rgba(255,255,255,.06) inset}
+  .mask::after{content:"redigido";position:absolute;right:4px;bottom:2px;font-size:10px;letter-spacing:.2px;color:rgba(255,255,255,.75);padding:2px 6px;border-radius:6px;background:rgba(0,0,0,.25)}
+  .thumb a[data-wm]::after{
+    content: attr(data-wm);
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    transform: rotate(-24deg);
+    font-size:26px; letter-spacing:.15em; color:rgba(255,255,255,var(--wmOpacity));
+    text-transform:uppercase; pointer-events:none;
+  }
 
-    /* máscaras (thumb + lightbox) */
-    .lb-fig{position:relative;display:inline-block}
-    .mask{position:absolute;border-radius:6px;backdrop-filter: blur(8px) brightness(.95);-webkit-backdrop-filter: blur(8px) brightness(.95);box-shadow:0 0 0 1px rgba(255,255,255,.06) inset}
-    .mask::after{content:"redigido";position:absolute;right:4px;bottom:2px;font-size:10px;letter-spacing:.2px;color:rgba(255,255,255,.75);padding:2px 6px;border-radius:6px;background:rgba(0,0,0,.25)}
-    body.privacy-strong .strip, body.privacy-strong .lightbox{
-      background-image:linear-gradient(transparent,transparent),
-                       repeating-linear-gradient(45deg, rgba(255,255,255,.035) 0 14px, transparent 14px 28px)}
-    body.privacy-strong .thumb img, body.privacy-strong .lightbox img{filter:saturate(.9) contrast(.98)}
-    #lb-masks{position:absolute;inset:0;pointer-events:none}
+  /* efeitos extra no modo forte */
+  body.privacy-strong .strip, body.privacy-strong .lightbox{
+    background-image:linear-gradient(transparent,transparent),
+                     repeating-linear-gradient(45deg, rgba(255,255,255,.035) 0 14px, transparent 14px 28px)}
+  body.privacy-strong .thumb img, body.privacy-strong .lightbox img{filter:saturate(.9) contrast(.98)}
 
-    /* lightbox */
-    .lightbox{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(10,12,16,.85);opacity:0;pointer-events:none;z-index:999;padding:24px;transition:opacity .25s ease}
-    .lightbox.open{opacity:1;pointer-events:auto}
-    .lightbox img{max-width:min(96vw,1200px);max-height:90vh;width:auto;height:auto;border-radius:12px;border:1px solid rgba(255,255,255,.12)}
-    .lightbox .close{position:absolute;top:18px;right:22px;font-size:14px;color:#e6e9f2;background:rgba(255,255,255,.08);padding:8px 10px;border-radius:10px}
-    .lightbox .panel{position:absolute;left:24px;right:24px;bottom:24px;background:rgba(0,0,0,.45);backdrop-filter:blur(6px) saturate(120%);color:#eef1f7;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15)}
-    .lightbox .panel h3{margin:0 0 4px 0;font-size:14px;font-weight:600}
-    .lightbox .panel p{margin:0;font-size:13px;line-height:1.35;color:#d6dbe6}
+  /* lightbox com editor */
+  .lightbox{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(10,12,16,.85);opacity:0;pointer-events:none;z-index:999;padding:24px;transition:opacity .25s ease}
+  .lightbox.open{opacity:1;pointer-events:auto}
+  .lb-viewport{max-width:96vw;max-height:82vh;overflow:auto;border-radius:12px}
+  .lb-fig{position:relative;display:block; /* width/height definidos via JS pelo zoom */}
+  .lb-fig img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid rgba(255,255,255,.12)}
+  #lb-masks{position:absolute;inset:0;pointer-events:none}
+  .lightbox .close{position:absolute;top:18px;right:22px;font-size:14px;color:#e6e9f2;background:rgba(255,255,255,.08);padding:8px 10px;border-radius:10px}
+  .lightbox .panel{position:absolute;left:24px;right:24px;bottom:24px;background:rgba(0,0,0,.45);backdrop-filter:blur(6px) saturate(120%);color:#eef1f7;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15)}
+  .lightbox .panel h3{margin:0 0 4px 0;font-size:14px;font-weight:600}
+  .lightbox .panel p{margin:0;font-size:13px;line-height:1.35;color:#d6dbe6}
+  /* toolbar */
+  .lb-toolbar{position:absolute;top:18px;left:22px;display:flex;gap:8px;flex-wrap:wrap}
+  .lb-toolbar button, .lb-toolbar input[type="range"]{
+    background:rgba(0,0,0,.45);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:6px 10px;font-size:12px
+  }
+  .lb-toolbar .range-wrap{display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.45);padding:6px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.2);color:#fff}
+  .lb-toolbar .range-wrap label{font-size:12px}
+  /* seleção temporária ao desenhar */
+  .sel-rect{position:absolute;border:1px dashed rgba(255,255,255,.7);background:rgba(124,58,237,.18);pointer-events:none;border-radius:6px;z-index:2}
+  /* marca d'água no lightbox */
+  .wm-layer{
+    position:absolute; inset:0; pointer-events:none; display:flex; align-items:center; justify-content:center;
+    transform: rotate(-24deg);
+    font-size:6vw; min-font-size:28px; letter-spacing:.18em; color:rgba(255,255,255,var(--wmOpacity));
+    text-transform:uppercase;
+  }
 
-    /* suavização opcional ao abrir */
-    .lightbox.soften-soft img{filter: blur(0.3px) saturate(0.96) contrast(0.99)}
-    .lightbox.soften-strong img{filter: blur(0.6px) saturate(0.94) contrast(0.98)}
-
-    footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1px solid rgba(255,255,255,.06);text-align:center;letter-spacing:.4px}
-  </style>
+  footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1px solid rgba(255,255,255,.06);text-align:center;letter-spacing:.4px}
+</style>
 </head>
 <body>
   <header class="site-header">
     <h1 class="title wrap">Portfólio Profissional</h1>
   </header>
 
-  <section class="wrap" aria-label="Dados pessoais">
+  <!-- pessoais -->
+  <section class="wrap">
     <div class="card-personal">
       <img src="img/foto.jpeg" alt="Foto — Rita Leandra Augustin" onerror="this.style.display='none'">
       <div>
@@ -112,16 +141,29 @@
     </div>
   </section>
 
-  <!-- Controles -->
+  <!-- controles -->
   <section class="wrap controls">
-    <label>
-      <span>Modo privacidade:</span>
-      <select id="privacy-level">
-        <option value="off">Desligado</option>
-        <option value="soft" selected>Leve</option>
-        <option value="strong">Forte</option>
-      </select>
-    </label>
+    <div class="left">
+      <label>
+        <span>Modo privacidade:</span>
+        <select id="privacy-level">
+          <option value="off">Desligado</option>
+          <option value="soft" selected>Leve</option>
+          <option value="strong">Forte</option>
+        </select>
+      </label>
+    </div>
+    <div class="right">
+      <label class="range">
+        <span>Marca d'água:</span>
+        <input type="checkbox" id="wm-toggle" checked>
+      </label>
+      <div class="range">
+        <span>Opacidade</span>
+        <input type="range" id="wm-range" min="0" max="30" value="12">
+        <span id="wm-val">12%</span>
+      </div>
+    </div>
   </section>
 
   <main class="wrap" aria-label="Case Boticário — Somente Imagens">
@@ -134,24 +176,20 @@
       </details>
       <div class="strip">
         <figure class="thumb">
-          <a href="#"
-             data-src="img/metodo_1.png"
+          <a href="#" data-src="img/metodo_1.png"
              data-title="Primeiros passos para aplicação do Scrum"
              data-desc="Material de referência com os passos iniciais para aplicação do Scrum: objetivos, pré-requisitos, responsabilidades e validações.">
-            <img src="img/metodo_1.png" alt="Primeiros passos para aplicação do Scrum">
-            <span class="hint">Expandir</span>
+            <img src="img/metodo_1.png" alt="Primeiros passos para aplicação do Scrum"><span class="hint">Expandir</span>
           </a>
           <figcaption>Primeiros passos para aplicação do Scrum.</figcaption>
         </figure>
 
         <figure class="thumb">
-          <a href="#"
-             data-src="img/metodo_2.png"
+          <a href="#" data-src="img/metodo_2.png"
              data-title="Orientações para definir o método mais adequado à equipe"
-             data-desc="Guia de apoio à decisão para escolha do método mais adequado ao contexto do time, considerando objetivo, restrições e maturidade."
+             data-desc="Guia de apoio à decisão para escolha do método mais adequado ao contexto do time."
              data-soften="soft">
-            <img src="img/metodo_2.png" alt="Orientações para definir o método mais adequado à equipe">
-            <span class="hint">Expandir</span>
+            <img src="img/metodo_2.png" alt="Orientações para definir o método mais adequado à equipe"><span class="hint">Expandir</span>
           </a>
           <figcaption>Orientações para definir o método mais adequado à equipe.</figcaption>
         </figure>
@@ -163,83 +201,69 @@
       <h2>Workshops e Documentações de OKRs Estratégicos e Táticos</h2>
       <details class="group-desc">
         <summary><span class="caret" aria-hidden="true"></span> Ver descrição do grupo</summary>
-        <div class="desc-body">Registros visuais e materiais que sustentaram a implementação metodológica de OKRs na empresa, desde a construção colaborativa até a consolidação e o acompanhamento contínuo.</div>
+        <div class="desc-body">Registros visuais e materiais que sustentaram a implementação metodológica de OKRs na empresa.</div>
       </details>
       <div class="strip">
         <figure class="thumb">
-          <a href="#"
-             data-src="img/okrs_estrategico_1.png"
+          <a href="#" data-src="img/okrs_estrategico_1.png"
              data-title="Workshop colaborativo de definição de OKRs estratégicos"
              data-desc="Registro do workshop com atividades e métodos aplicados para construção dos OKRs estratégicos.">
-            <img src="img/okrs_estrategico_1.png" alt="Workshop colaborativo de definição de OKRs estratégicos">
-            <span class="hint">Expandir</span>
+            <img src="img/okrs_estrategico_1.png" alt="Workshop de OKRs estratégicos"><span class="hint">Expandir</span>
           </a>
           <figcaption>Workshop colaborativo de definição de OKRs estratégicos.</figcaption>
         </figure>
 
         <figure class="thumb">
-          <a href="#"
-             data-src="img/okrs_estrategico_2.png"
-             data-title="Guia explicativo: o que é e como estruturar OKRs estratégicos"
-             data-desc="Documento explicativo com conceito, exemplos e critérios para estruturar OKRs estratégicos na organização.">
-            <img src="img/okrs_estrategico_2.png" alt="Guia explicativo: o que é e como estruturar OKRs estratégicos">
-            <span class="hint">Expandir</span>
+          <a href="#" data-src="img/okrs_estrategico_2.png"
+             data-title="Guia: estruturar OKRs estratégicos"
+             data-desc="Documento com conceito, exemplos e critérios para estruturar OKRs estratégicos.">
+            <img src="img/okrs_estrategico_2.png" alt="Guia OKRs estratégicos"><span class="hint">Expandir</span>
           </a>
           <figcaption>Guia explicativo: o que é e como estruturar OKRs estratégicos.</figcaption>
         </figure>
 
         <figure class="thumb">
-          <a href="#"
-             data-src="img/okrs_tatico_1.png"
-             data-title="Workshops de construção dos OKRs táticos com as tribos"
-             data-desc="Workshops com as tribos para mapear e construir OKRs táticos conectados aos objetivos estratégicos.">
-            <img src="img/okrs_tatico_1.png" alt="Workshops de construção dos OKRs táticos com as tribos">
-            <span class="hint">Expandir</span>
+          <a href="#" data-src="img/okrs_tatico_1.png"
+             data-title="Workshops de OKRs táticos"
+             data-desc="Workshops com tribos para mapear OKRs táticos conectados ao nível estratégico.">
+            <img src="img/okrs_tatico_1.png" alt="Workshops OKRs táticos"><span class="hint">Expandir</span>
           </a>
           <figcaption>Workshops de construção dos OKRs táticos com as tribos.</figcaption>
         </figure>
 
         <figure class="thumb">
-          <a href="#"
-             data-src="img/okrs_tatico_2.png"
-             data-title="Guia explicativo: o que é e como definir OKRs táticos"
-             data-desc="Documento com fundamentos dos OKRs táticos, sua relação com o nível estratégico e exemplos práticos.">
-            <img src="img/okrs_tatico_2.png" alt="Guia explicativo: o que é e como definir OKRs táticos">
-            <span class="hint">Expandir</span>
+          <a href="#" data-src="img/okrs_tatico_2.png"
+             data-title="Guia: OKRs táticos"
+             data-desc="Fundamentos de OKRs táticos e sua relação com o nível estratégico.">
+            <img src="img/okrs_tatico_2.png" alt="Guia OKRs táticos"><span class="hint">Expandir</span>
           </a>
           <figcaption>Guia explicativo: o que é e como definir OKRs táticos.</figcaption>
         </figure>
 
         <figure class="thumb">
-          <a href="#"
-             data-src="img/okrs_tatico_3.png"
-             data-title="Painéis de acompanhamento e cadências de check-in dos OKRs"
-             data-desc="Exemplos de painéis e check-ins para acompanhar evolução, responsáveis e critérios de sucesso dos OKRs.">
-            <img src="img/okrs_tatico_3.png" alt="Painéis de acompanhamento e cadências de check-in dos OKRs">
-            <span class="hint">Expandir</span>
+          <a href="#" data-src="img/okrs_tatico_3.png"
+             data-title="Acompanhamento e check-ins"
+             data-desc="Exemplos de painéis e check-ins para acompanhar evolução e critérios de sucesso.">
+            <img src="img/okrs_tatico_3.png" alt="Acompanhamento de OKRs"><span class="hint">Expandir</span>
           </a>
           <figcaption>Painéis de acompanhamento e cadências de check-in dos OKRs.</figcaption>
         </figure>
 
         <!-- NOVAS IMAGENS: OKRs no Jira -->
         <figure class="thumb">
-          <a href="#"
-             data-src="img/okrs_jira_1.png"
+          <a href="#" data-src="img/okrs_jira_1.png"
              data-title="Como criar OKRs no Jira"
-             data-desc="Passo a passo para registrar OKRs no Jira, conectando objetivos estratégicos e táticos aos épicos e iniciativas.">
-            <img src="img/okrs_jira_1.png" alt="Como criar OKRs no Jira">
-            <span class="hint">Expandir</span>
+             data-desc="Passo a passo para registrar OKRs no Jira, conectando objetivos e resultados-chave.">
+            <img src="img/okrs_jira_1.png" alt="Como criar OKRs no Jira"><span class="hint">Expandir</span>
           </a>
           <figcaption>Guia prático: criação de OKRs no Jira.</figcaption>
         </figure>
 
         <figure class="thumb">
-          <a href="#"
-             data-src="img/okrs_jira_2.png"
+          <a href="#" data-src="img/okrs_jira_2.png"
              data-title="Estrutura de OKRs no Jira"
-             data-desc="Visão de estrutura e relacionamentos entre objetivos, resultados-chave e itens do backlog no Jira.">
-            <img src="img/okrs_jira_2.png" alt="Estrutura de OKRs no Jira">
-            <span class="hint">Expandir</span>
+             data-desc="Relações entre objetivos, KRs e backlog no Jira.">
+            <img src="img/okrs_jira_2.png" alt="Estrutura de OKRs no Jira"><span class="hint">Expandir</span>
           </a>
           <figcaption>Estrutura de OKRs no Jira: relacionamentos e visibilidade.</figcaption>
         </figure>
@@ -251,63 +275,53 @@
       <h2>Modelo de Fluxo de Trabalho e Governança Escalável</h2>
       <details class="group-desc">
         <summary><span class="caret" aria-hidden="true"></span> Ver descrição do grupo</summary>
-        <div class="desc-body">Conjunto de documentos e orientações que estruturaram o fluxo unificado da organização, promovendo governança, definição de papéis, políticas, tipos de itens e previsibilidade entre áreas, para aumentar a visibilidade e a integração dos fluxos.</div>
+        <div class="desc-body">Documentos que estruturaram o fluxo unificado da organização.</div>
       </details>
       <div class="strip">
         <figure class="thumb">
-          <a href="#"
-             data-src="img/doc_fluxo_1.png"
-             data-title="Definição e propósito do fluxo de valor"
-             data-desc="Documento de referência explicando o conceito de fluxo de valor e como aplicá-lo no contexto organizacional.">
-            <img src="img/doc_fluxo_1.png" alt="Definição e propósito do fluxo de valor">
-            <span class="hint">Expandir</span>
+          <a href="#" data-src="img/doc_fluxo_1.png"
+             data-title="Fluxo de valor"
+             data-desc="Conceito de fluxo de valor e aplicação organizacional.">
+            <img src="img/doc_fluxo_1.png" alt="Fluxo de valor"><span class="hint">Expandir</span>
           </a>
-          <figcaption>Definição e propósito do fluxo de valor no contexto organizacional.</figcaption>
+          <figcaption>Definição e propósito do fluxo de valor.</figcaption>
         </figure>
 
         <figure class="thumb">
-          <a href="#"
-             data-src="img/doc_fluxo_2.png"
-             data-title="Workflow de entrega: políticas e critérios"
-             data-desc="Guia interno sobre o workflow de entrega no fluxo unificado, com políticas e critérios de passagem.">
-            <img src="img/doc_fluxo_2.png" alt="Workflow de entrega: políticas e critérios">
-            <span class="hint">Expandir</span>
+          <a href="#" data-src="img/doc_fluxo_2.png"
+             data-title="Workflow de entrega"
+             data-desc="Políticas e critérios do workflow de entrega.">
+            <img src="img/doc_fluxo_2.png" alt="Workflow de entrega"><span class="hint">Expandir</span>
           </a>
-          <figcaption>Workflow de entrega: políticas e critérios de passagem entre estágios.</figcaption>
+          <figcaption>Workflow de entrega: políticas e critérios.</figcaption>
         </figure>
 
         <figure class="thumb">
-          <a href="#"
-             data-src="img/doc_fluxo_3.png"
-             data-title="Workflow de produtos: responsabilidades e qualidade"
-             data-desc="Documento detalhando o fluxo de produtos, responsabilidades e critérios de qualidade.">
-            <img src="img/doc_fluxo_3.png" alt="Workflow de produtos: responsabilidades e qualidade">
-            <span class="hint">Expandir</span>
+          <a href="#" data-src="img/doc_fluxo_3.png"
+             data-title="Workflow de produtos"
+             data-desc="Responsabilidades e critérios de qualidade.">
+            <img src="img/doc_fluxo_3.png" alt="Workflow de produtos"><span class="hint">Expandir</span>
           </a>
-          <figcaption>Workflow de produtos: responsabilidades e critérios de qualidade.</figcaption>
+          <figcaption>Workflow de produtos.</figcaption>
         </figure>
 
         <figure class="thumb">
-          <a href="#"
-             data-src="img/doc_fluxo_4.png"
-             data-title="Workflow de refinamento: etapas e critérios"
-             data-desc="Documento com as etapas e critérios do refinamento que antecedem a execução.">
-            <img src="img/doc_fluxo_4.png" alt="Workflow de refinamento: etapas e critérios">
-            <span class="hint">Expandir</span>
+          <a href="#" data-src="img/doc_fluxo_4.png"
+             data-title="Workflow de refinamento"
+             data-desc="Etapas e critérios do refinamento.">
+            <img src="img/doc_fluxo_4.png" alt="Workflow de refinamento"><span class="hint">Expandir</span>
           </a>
-          <figcaption>Workflow de refinamento: etapas e critérios antes da execução.</figcaption>
+          <figcaption>Workflow de refinamento.</figcaption>
         </figure>
 
         <figure class="thumb">
-          <a href="#"
-             data-src="img/doc_fluxo_5.png"
-             data-title="Visão consolidada do fluxo unificado"
-             data-desc="Imagem que consolida o fluxo completo entre áreas e times, reforçando visibilidade e previsibilidade."
+          <a href="#" data-src="img/doc_fluxo_5.png"
+             data-title="Visão consolidada do fluxo"
+             data-desc="Fluxo completo entre áreas e times."
              data-mask-preset="tr-wide">
-            <img src="img/doc_fluxo_5.png" alt="Visão consolidada do fluxo unificado">
-            <span class="hint">Expandir</span>
+            <img src="img/doc_fluxo_5.png" alt="Fluxo consolidado"><span class="hint">Expandir</span>
           </a>
-          <figcaption>Visão consolidada do fluxo unificado entre áreas e times.</figcaption>
+          <figcaption>Visão consolidada do fluxo unificado.</figcaption>
         </figure>
       </div>
     </section>
@@ -317,19 +331,17 @@
       <h2>Centro de Excelência em Agilidade (COE Agile Team)</h2>
       <details class="group-desc">
         <summary><span class="caret" aria-hidden="true"></span> Ver descrição do grupo</summary>
-        <div class="desc-body">Representação visual dos principais serviços e pilares estruturantes do COE de Agilidade, que deu suporte à evolução de maturidade, capacitação e governança ágil em toda a organização.</div>
+        <div class="desc-body">Serviços, pilares e atuação do COE de Agilidade.</div>
       </details>
       <div class="strip">
         <figure class="thumb">
-          <a href="#"
-             data-src="img/coe_agile_team.png"
-             data-title="Mapa de serviços, pilares e atuação do COE de Agilidade"
-             data-desc="Visão dos serviços do COE (coaching, capacitação, métricas, governança) e sua contribuição para a maturidade organizacional."
+          <a href="#" data-src="img/coe_agile_team.png"
+             data-title="Mapa de serviços do COE"
+             data-desc="Coaching, capacitação, métricas e governança."
              data-mask-preset="tr-wide">
-            <img src="img/coe_agile_team.png" alt="Mapa de serviços, pilares e atuação do COE de Agilidade">
-            <span class="hint">Expandir</span>
+            <img src="img/coe_agile_team.png" alt="Mapa de serviços do COE"><span class="hint">Expandir</span>
           </a>
-          <figcaption>Mapa visual dos serviços, pilares e atuação do COE de Agilidade.</figcaption>
+          <figcaption>Mapa visual dos serviços e pilares do COE.</figcaption>
         </figure>
       </div>
     </section>
@@ -337,12 +349,27 @@
 
   <footer class="site-footer">© <span id="y"></span> Rita Leandra Augustin — Agile Coach</footer>
 
-  <!-- Lightbox -->
+  <!-- LIGHTBOX + EDITOR -->
   <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Visualização de imagem">
     <button class="close" aria-label="Fechar (Esc)">Fechar ✕</button>
-    <div class="lb-fig">
-      <img src="" alt="">
-      <div id="lb-masks"></div>
+    <div class="lb-toolbar" id="lb-toolbar">
+      <button id="lb-edit-toggle">Editar máscaras</button>
+      <button id="lb-add">+ Adicionar</button>
+      <button id="lb-undo">↩ Remover última</button>
+      <button id="lb-clear">🗑 Limpar todas</button>
+      <button id="lb-copy">📋 Copiar máscaras</button>
+      <div class="range-wrap">
+        <label for="lb-zoom">Zoom</label>
+        <input type="range" id="lb-zoom" min="50" max="200" value="100">
+        <span id="lb-zoom-val">100%</span>
+      </div>
+    </div>
+    <div class="lb-viewport">
+      <div class="lb-fig" id="lb-fig" style="width:auto;">
+        <img src="" alt="" id="lb-img">
+        <div id="lb-masks"></div>
+        <div class="wm-layer" id="lb-wm">Rita Leandra Augustin — Portfólio</div>
+      </div>
     </div>
     <div class="panel" aria-live="polite" aria-atomic="true">
       <h3 id="lb-title"></h3>
@@ -350,137 +377,192 @@
     </div>
   </div>
 
-  <script>
-    // util
-    const $ = (q,ctx=document)=>ctx.querySelector(q);
-    const $$ = (q,ctx=document)=>Array.from(ctx.querySelectorAll(q));
-    const y = $('#y'); if(y) y.textContent = new Date().getFullYear();
+<script>
+/* ===== helpers e globais ===== */
+const $ = (q,ctx=document)=>ctx.querySelector(q);
+const $$ = (q,ctx=document)=>Array.from(ctx.querySelectorAll(q));
+$('#y').textContent = new Date().getFullYear();
 
-    // modo privacidade
-    const levelSel = $('#privacy-level');
-    function applyPrivacyLevel(lv){ document.body.classList.toggle('privacy-strong', lv === 'strong'); }
-    if(levelSel){ applyPrivacyLevel(levelSel.value); levelSel.addEventListener('change', e => applyPrivacyLevel(e.target.value)); }
+/* modo privacidade */
+const levelSel = $('#privacy-level');
+function applyPrivacyLevel(lv){ document.body.classList.toggle('privacy-strong', lv === 'strong'); }
+applyPrivacyLevel(levelSel.value);
+levelSel.addEventListener('change', e => applyPrivacyLevel(e.target.value));
 
-    // presets de máscara
-    const PRESETS = {
-      "tr-compact":"82,2,16,12",
-      "tr-wide":"74,2,24,14",
-      "header-bar":"0,0,100,10",
-      "footer-bar":"0,88,100,12",
-      "bl-compact":"2,84,20,12",
-      "br-compact":"78,84,20,12"
-    };
-    function parseMasks(el){
-      const ms = [];
-      const preset = el.dataset.maskPreset;
-      if (preset && PRESETS[preset]) ms.push(PRESETS[preset]);
-      const manual = (el.dataset.mask || "").split(";").map(s=>s.trim()).filter(Boolean);
-      ms.push(...manual);
-      return ms;
-    }
+/* marca d'água global (thumbs + lightbox) */
+const WM_TEXT = "Rita Leandra Augustin — Portfólio";
+const wmToggle = $('#wm-toggle'), wmRange = $('#wm-range'), wmVal = $('#wm-val');
+function applyWm(){
+  const on = wmToggle.checked;
+  document.documentElement.style.setProperty('--wmOpacity', (wmRange.value/100).toString());
+  wmVal.textContent = wmRange.value + '%';
+  // thumbs: data-wm presente liga a camada; se desligar, removo atributo
+  $$('.thumb a[data-src]').forEach(a=>{
+    if(on){ a.setAttribute('data-wm', WM_TEXT); }
+    else { a.removeAttribute('data-wm'); }
+  });
+  // lightbox: troca visibilidade
+  const lbWm = $('#lb-wm');
+  lbWm.style.display = on ? 'flex' : 'none';
+}
+wmToggle.addEventListener('change', applyWm);
+wmRange.addEventListener('input', applyWm);
+applyWm();
 
-    // cria máscaras nas thumbs (com base nos presets/manual)
-    $$('.thumb a[data-src]').forEach(a=>{
-      const masks = parseMasks(a);
-      masks.forEach(def=>{
-        const [l,t,w,h] = def.split(',').map(Number);
-        if([l,t,w,h].some(n=>isNaN(n))) return;
-        const m = document.createElement('span');
-        m.className = 'mask';
-        m.style.left = l + '%'; m.style.top = t + '%';
-        m.style.width = w + '%'; m.style.height = h + '%';
-        a.appendChild(m);
-      });
+/* presets de máscara */
+const PRESETS = {
+  "tr-compact":"82,2,16,12",
+  "tr-wide":"74,2,24,14",
+  "header-bar":"0,0,100,10",
+  "footer-bar":"0,88,100,12",
+  "bl-compact":"2,84,20,12",
+  "br-compact":"78,84,20,12"
+};
+function parseMasks(el){
+  const ms = [];
+  const preset = el.dataset.maskPreset;
+  if (preset && PRESETS[preset]) ms.push(PRESETS[preset]);
+  const manual = (el.dataset.mask || "").split(";").map(s=>s.trim()).filter(Boolean);
+  ms.push(...manual);
+  return ms;
+}
+
+/* alinhar contêiner da thumb à imagem e desenhar marca d'água */
+window.addEventListener('load', ()=>{
+  $$('.thumb a[data-src]').forEach(a=>{
+    const img = a.querySelector('img'); if(!img) return;
+    const sync = ()=>{ a.style.width = img.clientWidth+'px'; a.style.height = img.clientHeight+'px'; };
+    if (img.complete) sync(); else img.addEventListener('load', sync);
+    // aplica wm nas thumbs (se ligado)
+    if(wmToggle.checked) a.setAttribute('data-wm', WM_TEXT);
+    // desenha máscaras das thumbs (presets + manuais)
+    a.querySelectorAll('.mask').forEach(m=>m.remove());
+    parseMasks(a).forEach(def=>{
+      const [l,t,w,h] = def.split(',').map(Number);
+      if([l,t,w,h].some(n=>isNaN(n))) return;
+      const m = document.createElement('span');
+      m.className = 'mask'; m.style.left=l+'%'; m.style.top=t+'%'; m.style.width=w+'%'; m.style.height=h+'%';
+      a.appendChild(m);
     });
+  });
+});
 
-    // lightbox simples
-    const lb = $('#lightbox');
-    const lbImg = $('img', lb);
-    const lbTitle = $('#lb-title');
-    const lbDesc  = $('#lb-desc');
-    const lbMasksBox = $('#lb-masks');
-    const closeBtn = $('.close', lb);
+/* ===== Lightbox + Editor (estável) ===== */
+const lb = $('#lightbox'), lbFig = $('#lb-fig'), lbImg = $('#lb-img'), lbMasksBox = $('#lb-masks');
+const lbTitle = $('#lb-title'), lbDesc = $('#lb-desc'), closeBtn = $('.close', lb);
+const lbWm = $('#lb-wm');
+const btnEdit = $('#lb-edit-toggle'), btnAdd = $('#lb-add'), btnUndo = $('#lb-undo'), btnClear = $('#lb-clear'), btnCopy = $('#lb-copy');
+const zoomRange = $('#lb-zoom'), zoomVal = $('#lb-zoom-val');
 
-    function clearLbMasks(){ lbMasksBox.innerHTML=''; lb.classList.remove('soften-soft','soften-strong'); }
-    function createLbMasks(defs){
-      clearLbMasks();
-      (defs||[]).forEach(def=>{
-        const [l,t,w,h] = def.split(',').map(Number);
-        if([l,t,w,h].some(n=>isNaN(n))) return;
-        const m = document.createElement('span');
-        m.className = 'mask';
-        m.style.left = l + '%'; m.style.top = t + '%';
-        m.style.width = w + '%'; m.style.height = h + '%';
-        lbMasksBox.appendChild(m);
-      });
-    }
+let lastAnchor=null, masksArr=[], editing=false, adding=false, sel=null, startX=0, startY=0;
+let natW=0, natH=0;
 
-    document.addEventListener('click', (e)=>{
-      const a = e.target.closest('a[data-src]');
-      if(a){
-        e.preventDefault();
-        lbImg.src = a.dataset.src;
-        lbTitle.textContent = a.dataset.title || '';
-        lbDesc.textContent  = a.dataset.desc  || '';
-        createLbMasks(parseMasks(a));
-        if(a.dataset.soften === 'soft')  lb.classList.add('soften-soft');
-        if(a.dataset.soften === 'strong')lb.classList.add('soften-strong');
-        lb.classList.add('open');
-        closeBtn && closeBtn.focus();
-      }
-      if(e.target === lb){ closeLB(); }
-    });
+function clearLbMasks(){ lbMasksBox.innerHTML=''; }
+function renderLbMasks(){
+  clearLbMasks();
+  masksArr.forEach((def,idx)=>{
+    const [l,t,w,h] = def.split(',').map(Number);
+    const m = document.createElement('span');
+    m.className='mask'; m.dataset.idx=idx;
+    m.style.left=l+'%'; m.style.top=t+'%'; m.style.width=w+'%'; m.style.height=h+'%';
+    lbMasksBox.appendChild(m);
+  });
+}
 
-    function closeLB(){
-      lb.classList.remove('open','soften-soft','soften-strong');
-      lbImg.src = '';
-      lbTitle.textContent = '';
-      lbDesc.textContent = '';
-      clearLbMasks();
-    }
-    closeBtn && closeBtn.addEventListener('click', closeLB);
-    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLB(); });
+function setZoom(v){
+  zoomRange.value=v; zoomVal.textContent=v+'%';
+  if(natW>0){
+    lbFig.style.width  = (natW*v/100) + 'px';
+    lbFig.style.height = (natH*v/100) + 'px';
+  }
+}
 
-    // >>> PATCH de alinhamento nas thumbs (garante contêiner = tamanho exato da imagem)
-    window.addEventListener('load', ()=>{
-      document.querySelectorAll('.thumb a[data-src]').forEach(a=>{
-        const img = a.querySelector('img');
-        if(!img) return;
-        const sync = ()=>{
-          a.style.width  = img.clientWidth + 'px';
-          a.style.height = img.clientHeight + 'px';
-        };
-        if (img.complete) sync(); else img.addEventListener('load', sync);
+function openLB(a){
+  lastAnchor = a;
+  lbImg.onload = ()=>{
+    natW = lbImg.naturalWidth || lbImg.width;
+    natH = lbImg.naturalHeight || lbImg.height;
+    setZoom(100);
+    masksArr = parseMasks(a);
+    renderLbMasks();
+    // sincroniza texto da wm no lightbox
+    lbWm.textContent = WM_TEXT;
+    lbWm.style.display = wmToggle.checked ? 'flex' : 'none';
+  };
+  lbImg.src = a.dataset.src;
+  lbTitle.textContent = a.dataset.title || '';
+  lbDesc.textContent  = a.dataset.desc || '';
+  lb.classList.add('open');
+  closeBtn.focus();
+}
+function closeLB(){
+  lb.classList.remove('open');
+  lbImg.src=''; lbTitle.textContent=''; lbDesc.textContent='';
+  clearLbMasks(); stopAdd(); editing=false; btnEdit.textContent='Editar máscaras';
+}
 
-        // recria máscaras já alinhadas
-        const PRESETS_LOCAL = {
-          "tr-compact":"82,2,16,12",
-          "tr-wide":"74,2,24,14",
-          "header-bar":"0,0,100,10",
-          "footer-bar":"0,88,100,12",
-          "bl-compact":"2,84,20,12",
-          "br-compact":"78,84,20,12"
-        };
-        const masks = [];
-        const preset = a.dataset.maskPreset;
-        if (preset && PRESETS_LOCAL[preset]) masks.push(PRESETS_LOCAL[preset]);
-        const manual = (a.dataset.mask || "").split(";").map(s=>s.trim()).filter(Boolean);
-        masks.push(...manual);
+document.addEventListener('click', (e)=>{
+  const a = e.target.closest('a[data-src]');
+  if(a){ e.preventDefault(); openLB(a); }
+  if(e.target === lb){ closeLB(); }
+});
+closeBtn.addEventListener('click', closeLB);
+document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLB(); });
 
-        a.querySelectorAll('.mask').forEach(m=>m.remove());
-        masks.forEach(def=>{
-          const [l,t,w,h] = def.split(',').map(Number);
-          if([l,t,w,h].some(n=>isNaN(n))) return;
-          const m = document.createElement('span');
-          m.className = 'mask';
-          m.style.left = l + '%';
-          m.style.top = t + '%';
-          m.style.width = w + '%';
-          m.style.height = h + '%';
-          a.appendChild(m);
-        });
-      });
-    });
-  </script>
+zoomRange.addEventListener('input', e=> setZoom(parseInt(e.target.value,10)));
+
+function toggleEdit(){ editing=!editing; btnEdit.textContent = editing ? 'Editar máscaras (Ligado)' : 'Editar máscaras'; }
+function startAdd(){ if(!editing){ toggleEdit(); } adding=true; btnAdd.textContent='+ Adicionando…'; lbFig.style.cursor='crosshair'; }
+function stopAdd(){ adding=false; btnAdd.textContent='+ Adicionar'; lbFig.style.cursor='auto'; if(sel){ sel.remove(); sel=null; } }
+function pct(x,total){ return Math.max(0, Math.min(100, x/total*100)); }
+
+lbFig.addEventListener('mousedown', (e)=>{
+  if(!adding) return;
+  const r = lbFig.getBoundingClientRect();
+  startX = e.clientX - r.left; startY = e.clientY - r.top;
+  sel = document.createElement('span'); sel.className='sel-rect';
+  sel.style.left=startX+'px'; sel.style.top=startY+'px'; lbFig.appendChild(sel); e.preventDefault();
+});
+lbFig.addEventListener('mousemove', (e)=>{
+  if(!adding || !sel) return;
+  const r = lbFig.getBoundingClientRect();
+  const curX = e.clientX - r.left, curY = e.clientY - r.top;
+  const x = Math.min(curX, startX), y = Math.min(curY, startY);
+  const w = Math.abs(curX - startX), h = Math.abs(curY - startY);
+  sel.style.left=x+'px'; sel.style.top=y+'px'; sel.style.width=w+'px'; sel.style.height=h+'px';
+});
+lbFig.addEventListener('mouseup', ()=>{
+  if(!adding || !sel) return;
+  const r = lbFig.getBoundingClientRect();
+  const x = parseFloat(sel.style.left), y = parseFloat(sel.style.top);
+  const w = parseFloat(sel.style.width), h = parseFloat(sel.style.height);
+  const out = [pct(x,r.width).toFixed(0), pct(y,r.height).toFixed(0), pct(w,r.width).toFixed(0), pct(h,r.height).toFixed(0)].join(',');
+  masksArr.push(out); renderLbMasks();
+  sel.remove(); sel=null; stopAdd();
+});
+
+/* apagar individual com CTRL+clique */
+lbMasksBox.addEventListener('click', (e)=>{
+  if(!editing || !e.ctrlKey) return;
+  const m = e.target.closest('.mask'); if(!m) return;
+  const idx = parseInt(m.dataset.idx,10);
+  if(!Number.isNaN(idx)){ masksArr.splice(idx,1); renderLbMasks(); }
+});
+
+btnEdit.addEventListener('click', toggleEdit);
+btnAdd.addEventListener('click', startAdd);
+btnUndo.addEventListener('click', ()=>{ if(masksArr.length){ masksArr.pop(); renderLbMasks(); }});
+btnClear.addEventListener('click', ()=>{ masksArr=[]; renderLbMasks(); });
+btnCopy.addEventListener('click', ()=>{
+  const val = masksArr.join('; ');
+  if(lastAnchor){ lastAnchor.dataset.mask = val; } // referência rápida na thumb
+  navigator.clipboard && navigator.clipboard.writeText(val).catch(()=>{});
+  btnCopy.textContent='📋 Copiado!'; setTimeout(()=>btnCopy.textContent='📋 Copiar máscaras', 900);
+});
+
+/* aplica wm nas thumbs/atualiza quando trocar opacidade */
+applyWm();
+</script>
 </body>
 </html>
+
