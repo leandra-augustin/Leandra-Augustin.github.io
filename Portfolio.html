@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfólio Profissional — Rita Leandra Augustin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0e0f13; --card:#151821; --text:#e7e9ee; --muted:#9aa3b2;
+      --brand:#7c3aed; --ring:rgba(124,58,237,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+      font-family:"Oswald",sans-serif;letter-spacing:.3px}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1200px;margin:auto;padding:24px}
+
+    header.site-header{
+      background:linear-gradient(180deg, rgba(124,58,237,.12), transparent 60%);
+      border-bottom:1px solid rgba(124,58,237,.15);
+      position:sticky;top:0;z-index:10;backdrop-filter:saturate(140%) blur(6px)
+    }
+    header .title{padding:18px 24px;margin:0;font-size:30px;font-weight:500;letter-spacing:.5px}
+
+    .card-personal{
+      display:flex;gap:18px;align-items:center;background:var(--card);
+      border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px 18px;margin-top:12px
+    }
+    .card-personal img{width:82px;height:82px;border-radius:50%;object-fit:cover;border:1px solid rgba(255,255,255,.12)}
+    .card-personal .name{font-size:22px;font-weight:600;letter-spacing:.4px}
+    .card-personal .role{color:var(--muted);margin-top:4px;font-size:15px}
+    .card-personal .contacts{margin-top:8px;font-size:14px;display:flex;gap:14px;flex-wrap:wrap}
+    .dot{color:var(--muted)}
+
+    .controls{display:flex;gap:12px;align-items:center;justify-content:flex-end;margin-top:8px}
+    .controls label{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--muted)}
+    .controls select{
+      background:var(--card);color:var(--text);border:1px solid rgba(255,255,255,.15);
+      border-radius:10px;padding:6px 10px;cursor:pointer
+    }
+
+    section.topic{margin:32px 0 12px}
+    .topic h2{font-size:18px;font-weight:600;margin:0;color:#cfd6e6;letter-spacing:.4px}
+    details.group-desc{
+      margin:6px 0 12px 0;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px
+    }
+    details.group-desc[open]{border-color:rgba(255,255,255,.14)}
+    details.group-desc summary{
+      cursor:pointer;list-style:none;padding:10px 14px;user-select:none;display:flex;align-items:center;gap:10px;color:#cfd6e6
+    }
+    details.group-desc summary::-webkit-details-marker{display:none}
+    .caret{width:10px;height:10px;border-right:2px solid #cfd6e6;border-bottom:2px solid #cfd6e6;transform:rotate(-45deg);transition:transform .25s ease;margin-left:2px}
+    details.group-desc[open] .caret{transform:rotate(45deg)}
+    .desc-body{padding:0 14px 12px 42px;color:var(--muted);font-size:14px}
+
+    .strip{display:flex;gap:12px;overflow-x:auto;padding:12px;background:var(--card);
+      border:1px solid rgba(255,255,255,.06);border-radius:14px;scroll-snap-type:x proximity}
+    .thumb{position:relative;flex:0 0 auto;scroll-snap-align:start;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);max-width:260px}
+    .thumb a{display:block;position:relative}
+    .thumb img{display:block;height:220px;width:auto;filter:blur(0.2px) saturate(0.98) contrast(1);transform:translateZ(0)}
+    .thumb .hint{position:absolute;right:8px;bottom:8px;font-size:12px;color:#cdd3e0;background:rgba(14,15,19,.6);padding:4px 6px;border-radius:8px}
+    .thumb figcaption{font-size:12px;color:var(--muted);padding:8px 10px 10px;max-width:260px}
+
+    /* máscaras (thumb + lightbox) */
+    .lb-fig{position:relative;display:inline-block}
+    .mask{position:absolute;border-radius:6px;backdrop-filter: blur(8px) brightness(.95);-webkit-backdrop-filter: blur(8px) brightness(.95);box-shadow:0 0 0 1px rgba(255,255,255,.06) inset}
+    .mask::after{content:"redigido";position:absolute;right:4px;bottom:2px;font-size:10px;letter-spacing:.2px;color:rgba(255,255,255,.75);padding:2px 6px;border-radius:6px;background:rgba(0,0,0,.25)}
+    body.privacy-strong .strip, body.privacy-strong .lightbox{
+      background-image:linear-gradient(transparent,transparent),
+                       repeating-linear-gradient(45deg, rgba(255,255,255,.035) 0 14px, transparent 14px 28px)}
+    body.privacy-strong .thumb img, body.privacy-strong .lightbox img{filter:saturate(.9) contrast(.98)}
+    #lb-masks{position:absolute;inset:0;pointer-events:none}
+
+    /* lightbox */
+    .lightbox{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(10,12,16,.85);opacity:0;pointer-events:none;z-index:999;padding:24px;transition:opacity .25s ease}
+    .lightbox.open{opacity:1;pointer-events:auto}
+    .lightbox img{max-width:min(96vw,1200px);max-height:90vh;width:auto;height:auto;border-radius:12px;border:1px solid rgba(255,255,255,.12)}
+    .lightbox .close{position:absolute;top:18px;right:22px;font-size:14px;color:#e6e9f2;background:rgba(255,255,255,.08);padding:8px 10px;border-radius:10px}
+    .lightbox .panel{position:absolute;left:24px;right:24px;bottom:24px;background:rgba(0,0,0,.45);backdrop-filter:blur(6px) saturate(120%);color:#eef1f7;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15)}
+    .lightbox .panel h3{margin:0 0 4px 0;font-size:14px;font-weight:600}
+    .lightbox .panel p{margin:0;font-size:13px;line-height:1.35;color:#d6dbe6}
+
+    /* suavização opcional ao abrir */
+    .lightbox.soften-soft img{filter: blur(0.3px) saturate(0.96) contrast(0.99)}
+    .lightbox.soften-strong img{filter: blur(0.6px) saturate(0.94) contrast(0.98)}
+
+    footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1px solid rgba(255,255,255,.06);text-align:center;letter-spacing:.4px}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <h1 class="title wrap">Portfólio Profissional</h1>
+  </header>
+
+  <section class="wrap" aria-label="Dados pessoais">
+    <div class="card-personal">
+      <img src="img/foto.jpeg" alt="Foto — Rita Leandra Augustin" onerror="this.style.display='none'">
+      <div>
+        <div class="name">Rita Leandra Augustin</div>
+        <div class="role">Agile Coach · Líder de Projetos Ágeis · Delivery Manager</div>
+        <div class="contacts">
+          <a href="mailto:rita.augustin@gmail.com">rita.augustin@gmail.com</a>
+          <span class="dot">•</span>
+          <a href="tel:+5551985077705">+55 (51) 98507-7705</a>
+          <span class="dot">•</span>
+          <a href="https://www.linkedin.com/in/rita-leandra-augustin" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Controles -->
+  <section class="wrap controls">
+    <label>
+      <span>Modo privacidade:</span>
+      <select id="privacy-level">
+        <option value="off">Desligado</option>
+        <option value="soft" selected>Leve</option>
+        <option value="strong">Forte</option>
+      </select>
+    </label>
+  </section>
+
+  <main class="wrap" aria-label="Case Boticário — Somente Imagens">
+    <!-- MÉTODOS -->
+    <section class="topic" id="metodos">
+      <h2>Guia de Métodos e Práticas Ágeis</h2>
+      <details class="group-desc">
+        <summary><span class="caret" aria-hidden="true"></span> Ver descrição do grupo</summary>
+        <div class="desc-body">Documentações criadas para apoiar as equipes na escolha e aplicação dos métodos ágeis mais adequados ao seu contexto.</div>
+      </details>
+      <div class="strip">
+        <figure class="thumb">
+          <a href="#"
+             data-src="img/metodo_1.png"
+             data-title="Primeiros passos para aplicação do Scrum"
+             data-desc="Material de referência com os passos iniciais para aplicação do Scrum: objetivos, pré-requisitos, responsabilidades e validações.">
+            <img src="img/metodo_1.png" alt="Primeiros passos para aplicação do Scrum">
+            <span class="hint">Expandir</span>
+          </a>
+          <figcaption>Primeiros passos para aplicação do Scrum.</figcaption>
+        </figure>
+
+        <figure class="thumb">
+          <a href="#"
+             data-src="img/metodo_2.png"
+             data-title="Orientações para definir o método mais adequado à equipe"
+             data-desc="Guia de apoio à decisão para escolha do método mais adequado ao contexto do time, considerando objetivo, restrições e maturidade."
+             data-soften="soft">
+            <img src="img/metodo_2.png" alt="Orientações para definir o método mais adequado à equipe">
+            <span class="hint">Expandir</span>
+          </a>
+          <figcaption>Orientações para definir o método mais adequado à equipe.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- OKRs -->
+    <section class="topic" id="okrs">
+      <h2>Workshops e Documentações de OKRs Estratégicos e Táticos</h2>
+      <details class="group-desc">
+        <summary><span class="caret" aria-hidden="true"></span> Ver descrição do grupo</summary>
+        <div class="desc-body">Registros visuais e materiais que sustentaram a implementação metodológica de OKRs na empresa, desde a construção colaborativa até a consolidação e o acompanhamento contínuo.</div>
+      </details>
+      <div class="strip">
+        <figure class="thumb">
+          <a href="#"
+             data-src="img/okrs_estrategico_1.png"
+             data-title="Workshop colaborativo de definição de OKRs estratégicos"
+             data-desc="Registro do workshop com atividades e métodos aplicados para construção dos OKRs estratégicos.">
+            <img src="img/okrs_estrategico_1.png" alt="Workshop colaborativo de definição de OKRs estratégicos">
+            <span class="hint">Expandir</span>
+          </a>
+          <figcaption>Workshop colaborativo de definição de OKRs estratégicos.</figcaption>
+        </figure>
+
+        <figure class="thumb">
+          <a href="#"
+             data-src="img/okrs_estrategico_2.png"
+             data-title="Guia explicativo: o que é e como estruturar OKRs estratégicos"
+             data-desc="Documento explicativo com conceito, exemplos e critérios para estruturar OKRs estratégicos na organização.">
+            <img src="img/okrs_estrategico_2.png" alt="Guia explicativo: o que é e como estruturar OKRs estratégicos">
+            <span class="hint">Expandir</span>
+          </a>
+          <figcaption>Guia explicativo: o que é e como estruturar OKRs estratégicos.</figcaption>
+        </figure>
+
+        <figure class="thumb">
+          <a href="#"
+             data-src="img/okrs_tatico_1.png"
+             data-title="Workshops de construção dos OKRs táticos com as tribos"
+             data-desc="Workshops com as tribos para mapear e construir OKRs táticos conectados aos objetivos estratégicos.">
+            <img src="img/okrs_tatico_1.png" alt="Workshops de construção dos OKRs táticos com as tribos">
+            <span class="hint">Expandir</span>
+          </a>
+          <figcaption>Workshops de construção dos OKRs táticos com as tribos.</figcaption>
+        </figure>
+
+        <figure class="thumb">
+          <a href="#"
+             data-src="img/okrs_tatico_2.png"
+             data-title="Guia explicativo: o que é e como definir OKRs táticos"
+             data-desc="Documento com fundamentos dos OKRs táticos, sua relação com o nível estratégico e exemplos práticos.">
+            <img src="img/okrs_tatico_2.png" alt="Guia explicativo: o que é e como definir OKRs táticos">
+            <span class="hint">Expandir</span>
+          </a>
+          <figcaption>Guia explicativo: o que é e como definir OKRs táticos.</figcaption>
+        </figure>
+
+        <figure class="thumb">
+          <a href="#"
+             data-src="img/okrs_tatico_3.png"
+             data-title="Painéis de acompanhamento e cadências de check-in dos OKRs"
+             data-desc="Exemplos de painéis e check-ins para acompanhar evolução, responsáveis e critérios de sucesso dos OKRs.">
+            <img src="img/okrs_tatico_3.png" alt="Painéis de acompanhamento e cadências de check-in dos OKRs">
+            <span class="hint">Expandir</span>
+          </a>
+          <figcaption>Painéis de acompanhamento e cadências de check-in dos OKRs.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- FLUXO -->
+    <section class="topic" id="fluxo">
+      <h2>Modelo de Fluxo de Trabalho e Governança Escalável</h2>
+      <details class="group-desc">
+        <summary><span class="caret" aria-hidden="true"></span> Ver descrição do grupo</summary>
+        <div class="desc-body">Conjunto de documentos e orientações que estruturaram o fluxo unificado da organização, promovendo governança, definição de papéis, políticas, tipos de itens e previsibilidade entre áreas, para aumentar a visibilidade e a integração dos fluxos.</div>
+      </details>
+      <div class="strip">
+        <figure class="thumb">
+          <a href="#"
+             data-src="img/doc_fluxo_1.png"
+             data-title="Definição e propósito do fluxo de valor"
+             data-desc="Documento de referência explicando o conceito de fluxo de valor e como aplicá-lo no contexto organizacional.">
+            <img src="img/doc_fluxo_1.png" alt="Definição e propósito do fluxo de valor">
+            <span class="hint">Expandir</span>
+          </a>
+          <figcaption>Definição e propósito do fluxo de valor no contexto organizacional.</figcaption>
+        </figure>
+
+        <figure class="thumb">
+          <a href="#"
+             data-src="img/doc_fluxo_2.png"
+             data-title="Workflow de entrega: políticas e critérios"
+             data-desc="Guia interno sobre o workflow de entrega no fluxo unificado, com políticas e critérios de passagem.">
+            <img src="img/doc_fluxo_2.png" alt="Workflow de entrega: políticas e critérios">
+            <span class="hint">Expandir</span>
+          </a>
+          <figcaption>Workflow de entrega: políticas e critérios de passagem entre estágios.</figcaption>
+        </figure>
+
+        <figure class="thumb">
+          <a href="#"
+             data-src="img/doc_fluxo_3.png"
+             data-title="Workflow de produtos: responsabilidades e qualidade"
+             data-desc="Documento detalhando o fluxo de produtos, responsabilidades e critérios de qualidade.">
+            <img src="img/doc_fluxo_3.png" alt="Workflow de produtos: responsabilidades e qualidade">
+            <span class="hint">Expandir</span>
+          </a>
+          <figcaption>Workflow de produtos: responsabilidades e critérios de qualidade.</figcaption>
+        </figure>
+
+        <figure class="thumb">
+          <a href="#"
+             data-src="img/doc_fluxo_4.png"
+             data-title="Workflow de refinamento: etapas e critérios"
+             data-desc="Documento com as etapas e critérios do refinamento que antecedem a execução.">
+            <img src="img/doc_fluxo_4.png" alt="Workflow de refinamento: etapas e critérios">
+            <span class="hint">Expandir</span>
+          </a>
+          <figcaption>Workflow de refinamento: etapas e critérios antes da execução.</figcaption>
+        </figure>
+
+        <figure class="thumb">
+          <a href="#"
+             data-src="img/doc_fluxo_5.png"
+             data-title="Visão consolidada do fluxo unificado"
+             data-desc="Imagem que consolida o fluxo completo entre áreas e times, reforçando visibilidade e previsibilidade."
+             data-mask-preset="tr-wide">
+            <img src="img/doc_fluxo_5.png" alt="Visão consolidada do fluxo unificado">
+            <span class="hint">Expandir</span>
+          </a>
+          <figcaption>Visão consolidada do fluxo unificado entre áreas e times.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- COE -->
+    <section class="topic" id="coe">
+      <h2>Centro de Excelência em Agilidade (COE Agile Team)</h2>
+      <details class="group-desc">
+        <summary><span class="caret" aria-hidden="true"></span> Ver descrição do grupo</summary>
+        <div class="desc-body">Representação visual dos principais serviços e pilares estruturantes do COE de Agilidade, que deu suporte à evolução de maturidade, capacitação e governança ágil em toda a organização.</div>
+      </details>
+      <div class="strip">
+        <figure class="thumb">
+          <a href="#"
+             data-src="img/coe_agile_team.png"
+             data-title="Mapa de serviços, pilares e atuação do COE de Agilidade"
+             data-desc="Visão dos serviços do COE (coaching, capacitação, métricas, governança) e sua contribuição para a maturidade organizacional."
+             data-mask-preset="tr-wide">
+            <img src="img/coe_agile_team.png" alt="Mapa de serviços, pilares e atuação do COE de Agilidade">
+            <span class="hint">Expandir</span>
+          </a>
+          <figcaption>Mapa visual dos serviços, pilares e atuação do COE de Agilidade.</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">© <span id="y"></span> Rita Leandra Augustin — Agile Coach</footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Visualização de imagem">
+    <button class="close" aria-label="Fechar (Esc)">Fechar ✕</button>
+    <div class="lb-fig">
+      <img src="" alt="">
+      <div id="lb-masks"></div>
+    </div>
+    <div class="panel" aria-live="polite" aria-atomic="true">
+      <h3 id="lb-title"></h3>
+      <p id="lb-desc"></p>
+    </div>
+  </div>
+
+  <script>
+    // util
+    const $ = (q,ctx=document)=>ctx.querySelector(q);
+    const $$ = (q,ctx=document)=>Array.from(ctx.querySelectorAll(q));
+    const y = $('#y'); if(y) y.textContent = new Date().getFullYear();
+
+    // modo privacidade
+    const levelSel = $('#privacy-level');
+    function applyPrivacyLevel(lv){ document.body.classList.toggle('privacy-strong', lv === 'strong'); }
+    if(levelSel){ applyPrivacyLevel(levelSel.value); levelSel.addEventListener('change', e => applyPrivacyLevel(e.target.value)); }
+
+    // presets de máscara
+    const PRESETS = {
+      "tr-compact":"82,2,16,12",
+      "tr-wide":"74,2,24,14",
+      "header-bar":"0,0,100,10",
+      "footer-bar":"0,88,100,12",
+      "bl-compact":"2,84,20,12",
+      "br-compact":"78,84,20,12"
+    };
+    function parseMasks(el){
+      const ms = [];
+      const preset = el.dataset.maskPreset;
+      if (preset && PRESETS[preset]) ms.push(PRESETS[preset]);
+      const manual = (el.dataset.mask || "").split(";").map(s=>s.trim()).filter(Boolean);
+      ms.push(...manual);
+      return ms;
+    }
+
+    // cria máscaras nas thumbs (com base nos presets/manual)
+    $$('.thumb a[data-src]').forEach(a=>{
+      const masks = parseMasks(a);
+      masks.forEach(def=>{
+        const [l,t,w,h] = def.split(',').map(Number);
+        if([l,t,w,h].some(n=>isNaN(n))) return;
+        const m = document.createElement('span');
+        m.className = 'mask';
+        m.style.left = l + '%'; m.style.top = t + '%';
+        m.style.width = w + '%'; m.style.height = h + '%';
+        a.appendChild(m);
+      });
+    });
+
+    // lightbox simples
+    const lb = $('#lightbox');
+    const lbImg = $('img', lb);
+    const lbTitle = $('#lb-title');
+    const lbDesc  = $('#lb-desc');
+    const lbMasksBox = $('#lb-masks');
+    const closeBtn = $('.close', lb);
+
+    function clearLbMasks(){ lbMasksBox.innerHTML=''; lb.classList.remove('soften-soft','soften-strong'); }
+    function createLbMasks(defs){
+      clearLbMasks();
+      (defs||[]).forEach(def=>{
+        const [l,t,w,h] = def.split(',').map(Number);
+        if([l,t,w,h].some(n=>isNaN(n))) return;
+        const m = document.createElement('span');
+        m.className = 'mask';
+        m.style.left = l + '%'; m.style.top = t + '%';
+        m.style.width = w + '%'; m.style.height = h + '%';
+        lbMasksBox.appendChild(m);
+      });
+    }
+
+    document.addEventListener('click', (e)=>{
+      const a = e.target.closest('a[data-src]');
+      if(a){
+        e.preventDefault();
+        lbImg.src = a.dataset.src;
+        lbTitle.textContent = a.dataset.title || '';
+        lbDesc.textContent  = a.dataset.desc  || '';
+        createLbMasks(parseMasks(a));
+        if(a.dataset.soften === 'soft')  lb.classList.add('soften-soft');
+        if(a.dataset.soften === 'strong')lb.classList.add('soften-strong');
+        lb.classList.add('open');
+        closeBtn && closeBtn.focus();
+      }
+      if(e.target === lb){ closeLB(); }
+    });
+
+    function closeLB(){
+      lb.classList.remove('open','soften-soft','soften-strong');
+      lbImg.src = '';
+      lbTitle.textContent = '';
+      lbDesc.textContent = '';
+      clearLbMasks();
+    }
+    closeBtn && closeBtn.addEventListener('click', closeLB);
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLB(); });
+  </script>
+</body>
+</html>
