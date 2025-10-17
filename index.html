@@ -16,32 +16,7 @@
   window.track=function(name){try{window.plausible&&window.plausible(name);}catch(e){}}
 })();
 </script>
-<style>
-/* ===== Overrides de layout: mais respiro ===== */
-.intro{
-  margin:24px 0 36px;
-  padding:0;
-  background:none;
-  border:0;
-  color:var(--muted);
-  font-size:15px;
-  line-height:1.55;
-}
-.intro p{margin:0 0 6px 0;}
 
-.topic{margin:48px 0 12px;}
-.topic + .topic{margin-top:56px;}
-.topic h2{margin:0 0 14px 0;}
-details.group-desc{margin:8px 0 16px;}
-.strip{gap:14px;padding:14px;}
-
-@media(max-width:720px){
-  .intro{margin:20px 0 28px;}
-  .topic{margin:36px 0 10px;}
-  .topic + .topic{margin-top:42px;}
-  .topic h2{margin-bottom:12px;}
-  details.group-desc{margin:8px 0 14px;}
-}
 <style>
 :root{ --bg:#0e0f13; --card:#151821; --text:#e7e9ee; --muted:#9aa3b2; --brand:#7c3aed; --wmOpacity:.40; }
 *{box-sizing:border-box} html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:"Oswald",sans-serif;letter-spacing:.3px}
