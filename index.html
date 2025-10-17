@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Portfólio Profissional — Rita Leandra Augustin</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Analytics (Plausible) — injeta automaticamente com o domínio atual -->
+<script>
+(function(){
+  var d=document,s=d.createElement('script');
+  s.defer=true; s.setAttribute('data-domain', location.hostname);
+  s.src='https://plausible.io/js/script.js';
+  d.head.appendChild(s);
+  window.track=function(name){try{window.plausible&&window.plausible(name);}catch(e){}}
+})();
+</script>
+
 <style>
 :root{ --bg:#0e0f13; --card:#151821; --text:#e7e9ee; --muted:#9aa3b2; --brand:#7c3aed; --wmOpacity:.40; }
 *{box-sizing:border-box} html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:"Oswald",sans-serif;letter-spacing:.3px}
@@ -22,7 +34,7 @@ header .contacts{margin:0;padding:10px 0 0 0;color:var(--muted);display:flex;gap
 header .contacts a:hover{text-decoration:underline} .dot{color:var(--muted)}
 @media(max-width:720px){.header-block{gap:12px}header .photo{width:74px;height:74px}header .name{font-size:24px}}
 
-/* Controles */
+/* Controles (visíveis só em admin) */
 .controls{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:8px;flex-wrap:wrap}
 .controls .left,.controls .right{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .range{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:6px 10px;color:var(--muted)}
@@ -272,7 +284,10 @@ footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1p
 <footer class="site-footer">
   © <span id="y"></span> Rita Leandra Augustin — Portfólio Profissional
   <br>
-  <small>Conteúdo adaptado e protegido para uso profissional. Reprodução total ou parcial não autorizada.</small>
+  <small>
+    Este portfólio mostra exemplos selecionados com marca d’água e áreas redigidas para preservar confidencialidade.
+    Sinta-se à vontade para usar ideias ou trechos de texto — evite apenas reproduzir informações sensíveis ou identificar terceiros.
+  </small>
 </footer>
 
 <!-- LIGHTBOX + EDITOR -->
@@ -325,14 +340,13 @@ if(ADMIN){
 const WM_TEXT="Portfolio";
 const wmToggle=$('#wm-toggle'), wmRange=$('#wm-range'), wmVal=$('#wm-val');
 function forceVisitorWM(){
-  // Visitante: watermark sempre ON, controles invisíveis
   $$('.thumb a[data-src]').forEach(a=>a.setAttribute('data-wm',WM_TEXT));
   $('#lb-wm').style.display='flex';
   document.documentElement.style.setProperty('--wmOpacity','0.40');
 }
 function applyWm(){
-  const on = ADMIN ? wmToggle.checked : true;
-  const v = ADMIN ? ((parseInt(wmRange.value,10)||0)/100) : 0.40;
+  const on = ADMIN ? wmToggle?.checked : true;
+  const v = ADMIN ? ((parseInt(wmRange?.value||'40',10)||0)/100) : 0.40;
   document.documentElement.style.setProperty('--wmOpacity',String(v));
   if(ADMIN && wmVal) wmVal.textContent=(v*100).toFixed(0)+'%';
   $$('.thumb a[data-src]').forEach(a=>{ if(on) a.setAttribute('data-wm',WM_TEXT); else a.removeAttribute('data-wm'); });
@@ -343,16 +357,29 @@ if(ADMIN){
   wmRange?.addEventListener('input',applyWm);
   applyWm();
 }else{
-  // Visitante: força marca d'água e esconde controles
   forceVisitorWM();
 }
 
-/* --------- Masks: presets + persistência --------- */
+/* --------- Masks: presets + persistência + catálogo --------- */
 const PRESETS={"tr-compact":"82,2,16,12","tr-wide":"74,2,24,14","header-bar":"0,0,100,10","footer-bar":"0,88,100,12","bl-compact":"2,84,20,12","br-compact":"78,84,20,12"};
-const LS_PREFIX='masks::'; // localStorage key prefix
 
+async function loadMasksCatalog() {
+  try {
+    const res = await fetch('masks.json', { cache: 'no-store' });
+    if (!res.ok) return;
+    const catalog = await res.json(); // { "img/arquivo.png": "l,t,w,h; ..." }
+    document.querySelectorAll('.thumb a[data-src]').forEach(a=>{
+      const key = a.getAttribute('data-src');
+      if (key && catalog[key]) {
+        a.dataset.mask = catalog[key];                // aplica no DOM
+        try { localStorage.setItem('masks::'+key, catalog[key]); } catch(_) {}
+      }
+    });
+  } catch(_) {}
+}
+
+const LS_PREFIX='masks::'; // localStorage key prefix
 function maskKeyForAnchor(a){
-  // Usa o caminho da imagem como chave estável
   const src = a.getAttribute('data-src') || a.querySelector('img')?.getAttribute('src') || '';
   return LS_PREFIX + src;
 }
@@ -368,14 +395,11 @@ function saveMasksToStorage(a, value){
 
 function parseMasks(el){
   const ms=[];
-  // 1) preset
   const p=el.dataset.maskPreset; if(p&&PRESETS[p]) ms.push(PRESETS[p]);
-  // 2) HTML data-mask (fonte canônica do arquivo)
   const fromHtml=(el.dataset.mask||'').split(';').map(s=>s.trim()).filter(Boolean);
   ms.push(...fromHtml);
-  // 3) localStorage (tem prioridade sobre o HTML ao renderizar)
   const fromLs=(loadMasksFromStorage(el)||'').split(';').map(s=>s.trim()).filter(Boolean);
-  if(fromLs.length) return fromLs; // prioriza o que foi salvo no navegador
+  if(fromLs.length) return fromLs;
   return ms;
 }
 
@@ -392,15 +416,14 @@ function refreshThumbMasks(a){
   });
 }
 
-/* Ajuste de largura/altura dos anchors + watermark nas thumbs */
-window.addEventListener('load',()=>{
-  $$('.thumb a[data-src]').forEach(a=>{
-    const img=a.querySelector('img'); if(!img) return;
+/* Ajuste de largura/altura dos anchors + watermark nas thumbs + catálogo */
+window.addEventListener('load', async ()=>{
+  await loadMasksCatalog();
+  document.querySelectorAll('.thumb a[data-src]').forEach(a=>{
+    const img = a.querySelector('img'); if(!img) return;
     const sync=()=>{ a.style.width=img.clientWidth+'px'; a.style.height=img.clientHeight+'px'; };
     if(img.complete) sync(); else img.addEventListener('load',sync);
-
-    // Marca d'água nas thumbs
-    a.setAttribute('data-wm', WM_TEXT);
+    a.setAttribute('data-wm','Portfolio'); // watermark nas thumbs
     refreshThumbMasks(a);
   });
 });
@@ -429,12 +452,9 @@ function renderLbMasks(){
 function persistMasks(){
   if(!lastAnchor) return;
   const flat = masksArr.join('; ');
-  // 1) salva no atributo (tornar visível no DOM da página)
-  lastAnchor.dataset.mask = flat;
-  // 2) salva no navegador (sobrevive a reload no mesmo browser)
-  saveMasksToStorage(lastAnchor, flat);
-  // 3) reflete na miniatura
-  refreshThumbMasks(lastAnchor);
+  lastAnchor.dataset.mask = flat;             // atributo visível
+  saveMasksToStorage(lastAnchor, flat);       // navegador
+  refreshThumbMasks(lastAnchor);              // miniatura
 }
 function setZoom(v){
   zoomRange.value=v; zoomVal.textContent=v+'%';
@@ -446,7 +466,6 @@ function openLB(a){
   lbImg.onload=()=>{
     natW=lbImg.naturalWidth||lbImg.width; natH=lbImg.naturalHeight||lbImg.height;
     setZoom(100);
-    // carrega: preset + HTML + localStorage (prioridade localStorage)
     masksArr=parseMasks(a);
     renderLbMasks();
     lbWm.style.display='flex';
@@ -457,6 +476,10 @@ function openLB(a){
   lbTitle.textContent=a.dataset.title||'';
   lbDesc.textContent=a.dataset.desc||'';
   lb.classList.add('open');
+
+  // Analytics
+  window.track && window.track('open_image');
+
   closeBtn.focus();
 }
 
@@ -477,7 +500,7 @@ document.addEventListener('click',(e)=>{
 closeBtn.addEventListener('click',closeLB);
 document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeLB(); });
 
-/* Zoom (sempre visível, sem risco) */
+/* Zoom */
 zoomRange?.addEventListener('input',e=> setZoom(parseInt(e.target.value,10)));
 
 /* ---- Edição: apenas ADMIN ---- */
@@ -530,7 +553,6 @@ if(ADMIN){
     $$('.thumb a[data-src]').forEach(a=>{
       const key=(a.getAttribute('data-src')||'').trim();
       if(!key) return;
-      // usa o que estiver no STORAGE (prioridade), senão o atributo
       const fromLs = loadMasksFromStorage(a);
       const val = fromLs || (a.dataset.mask||'');
       if(val) data[key]=val;
@@ -539,6 +561,9 @@ if(ADMIN){
     const url=URL.createObjectURL(blob);
     const link=document.createElement('a'); link.href=url; link.download='masks.json';
     document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url);
+
+    // Analytics
+    window.track && window.track('export_masks');
   });
 
   inpImport?.addEventListener('change',(e)=>{
@@ -556,6 +581,10 @@ if(ADMIN){
           }
         });
         alert('Máscaras importadas e aplicadas.');
+
+        // Analytics
+        window.track && window.track('import_masks');
+
       }catch(_){ alert('Arquivo inválido.'); }
     };
     reader.readAsText(file);
