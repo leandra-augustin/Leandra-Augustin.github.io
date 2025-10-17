@@ -9,6 +9,8 @@
 :root{ --bg:#0e0f13; --card:#151821; --text:#e7e9ee; --muted:#9aa3b2; --brand:#7c3aed; --wmOpacity:.40; }
 *{box-sizing:border-box} html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:"Oswald",sans-serif;letter-spacing:.3px}
 a{color:inherit;text-decoration:none} .wrap{max-width:1200px;margin:auto;padding:24px}
+
+/* Header */
 header.site-header{background:linear-gradient(180deg, rgba(124,58,237,.12), transparent 60%);border-bottom:1px solid rgba(124,58,237,.15);position:sticky;top:0;z-index:10;backdrop-filter:saturate(140%) blur(6px)}
 .header-block{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:16px;padding:14px 24px 16px}
 header .photo{width:84px;height:84px;border-radius:50%;overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:0 8px 24px rgba(0,0,0,.25)}
@@ -20,13 +22,14 @@ header .contacts{margin:0;padding:10px 0 0 0;color:var(--muted);display:flex;gap
 header .contacts a:hover{text-decoration:underline} .dot{color:var(--muted)}
 @media(max-width:720px){.header-block{gap:12px}header .photo{width:74px;height:74px}header .name{font-size:24px}}
 
+/* Controles */
 .controls{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:8px;flex-wrap:wrap}
 .controls .left,.controls .right{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.controls label{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--muted)}
 .range{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:6px 10px;color:var(--muted)}
-select,input[type="checkbox"],input[type="range"]{accent-color:#b39df7}
-select,button{background:var(--card);color:var(--text);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:6px 10px;cursor:pointer}
+.controls .note{font-size:12px;color:#aeb6c7}
+input[type="checkbox"],input[type="range"]{accent-color:#b39df7}
 
+/* Seções */
 section.topic{margin:32px 0 12px}
 .topic h2{font-size:18px;font-weight:600;margin:0;color:#cfd6e6;letter-spacing:.4px}
 details.group-desc{margin:6px 0 12px;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px}
@@ -37,6 +40,7 @@ details.group-desc summary::-webkit-details-marker{display:none}
 details.group-desc[open] .caret{transform:rotate(45deg)}
 .desc-body{padding:0 14px 12px 42px;color:var(--muted);font-size:14px}
 
+/* Tiras de thumbs */
 .strip{display:flex;gap:12px;overflow-x:auto;padding:12px;background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:14px;scroll-snap-type:x proximity}
 .thumb{position:relative;flex:0 0 auto;scroll-snap-align:start;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);max-width:260px}
 .thumb a{display:inline-block;position:relative;line-height:0}
@@ -44,32 +48,42 @@ details.group-desc[open] .caret{transform:rotate(45deg)}
 .thumb .hint{position:absolute;right:8px;bottom:8px;font-size:12px;color:#cdd3e0;background:rgba(14,15,19,.6);padding:4px 6px;border-radius:8px}
 .thumb figcaption{font-size:12px;color:var(--muted);padding:8px 10px 10px;max-width:260px}
 
+/* Máscaras (visual) */
 .mask{position:absolute;border-radius:6px;backdrop-filter: blur(8px) brightness(.95);-webkit-backdrop-filter: blur(8px) brightness(.95);box-shadow:0 0 0 1px rgba(255,255,255,.06) inset}
 .mask::after{content:"redigido";position:absolute;right:4px;bottom:2px;font-size:10px;letter-spacing:.2px;color:rgba(255,255,255,.75);padding:2px 6px;border-radius:6px;background:rgba(0,0,0,.25)}
 #lb-masks{position:absolute;inset:0;}
 
+/* Marca d'água (thumbs) */
 .thumb a[data-wm]::after{content:attr(data-wm);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transform:rotate(-24deg);font-size:26px;font-weight:700;letter-spacing:.15em;color:rgba(0,0,0,var(--wmOpacity));text-shadow:0 1px 0 rgba(255,255,255,.25);text-transform:uppercase;pointer-events:none}
 
+/* Lightbox */
 .lightbox{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(10,12,16,.85);opacity:0;pointer-events:none;z-index:999;padding:24px;transition:opacity .25s ease}
 .lightbox.open{opacity:1;pointer-events:auto}
 .lb-viewport{max-width:96vw;max-height:82vh;overflow:auto;border-radius:12px}
 .lb-fig{position:relative;display:block}
 .lb-fig img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid rgba(255,255,255,.12)}
 .lightbox .close{position:absolute;top:18px;right:22px;font-size:14px;color:#e6e9f2;background:rgba(255,255,255,.08);padding:8px 10px;border-radius:10px}
-.lightbox .panel{position:absolute;left:24px;right:24px;bottom:24px;background:rgba(0,0,0,.45);backdrop-filter:blur(6px) saturate(120%);color:#eef1f7;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15)}
-.lightbox .panel h3{margin:0 0 4px 0;font-size:14px;font-weight:600}
-.lightbox .panel p{margin:0;font-size:13px;line-height:1.35;color:#d6dbe6}
-.lb-toolbar{position:absolute;top:18px;left:22px;display:flex;gap:8px;flex-wrap:wrap}
+
+/* Toolbar: oculta para visitantes; visível só em .admin */
+.lb-toolbar{position:absolute;top:18px;left:22px;display:none;gap:8px;flex-wrap:wrap}
+.admin .lb-toolbar{display:flex;}
 .lb-toolbar button,.lb-toolbar input[type="range"]{background:rgba(0,0,0,.45);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:6px 10px;font-size:12px}
 .lb-toolbar .range-wrap{display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.45);padding:6px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.2);color:#fff}
 .sel-rect{position:absolute;border:1px dashed rgba(255,255,255,.7);background:rgba(124,58,237,.18);pointer-events:none;border-radius:6px;z-index:2}
 
+.lightbox .panel{position:absolute;left:24px;right:24px;bottom:24px;background:rgba(0,0,0,.45);backdrop-filter:blur(6px) saturate(120%);color:#eef1f7;padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15)}
+.lightbox .panel h3{margin:0 0 4px 0;font-size:14px;font-weight:600}
+.lightbox .panel p{margin:0;font-size:13px;line-height:1.35;color:#d6dbe6}
+
+/* Watermark layer na lightbox */
 .wm-layer{position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:center;transform:rotate(-24deg);font-size:6vw;min-font-size:28px;letter-spacing:.18em;font-weight:800;color:rgba(0,0,0,var(--wmOpacity));text-shadow:0 1px 0 rgba(255,255,255,.28);text-transform:uppercase}
 
-body.privacy-strong .strip,body.privacy-strong .lightbox{background-image:linear-gradient(transparent,transparent),repeating-linear-gradient(45deg, rgba(255,255,255,.035) 0 14px, transparent 14px 28px)}
-body.privacy-strong .thumb img,body.privacy-strong .lightbox img{filter:saturate(.9) contrast(.98)}
-
+/* Footer */
 footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1px solid rgba(255,255,255,.06);text-align:center;letter-spacing:.4px}
+
+/* Intro */
+.intro{margin:18px 0 8px;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px;color:var(--muted);font-size:14px;line-height:1.45}
+.intro p{margin:0 0 6px 0}
 </style>
 </head>
 <body>
@@ -91,23 +105,25 @@ footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1p
   </div>
 </header>
 
-<!-- CONTROLES -->
+<!-- CONTROLES (somente marca d'água; oculto para visitantes) -->
 <section class="wrap controls">
   <div class="left">
-    <label><span>Modo privacidade:</span>
-      <select id="privacy-level">
-        <option value="off">Desligado</option><option value="soft" selected>Leve</option><option value="strong">Forte</option>
-      </select>
-    </label>
+    <span class="note">A marca d’água é fixa para visitantes. <span id="admin-hint" style="display:none">— <strong>Modo admin</strong> ativo.</span></span>
   </div>
-  <div class="right">
-    <label class="range"><span>Marca d'água:</span><input type="checkbox" id="wm-toggle" checked></label>
+  <div class="right admin-only" style="display:none;">
+    <div class="range"><span>Marca d'água</span><input type="checkbox" id="wm-toggle" checked></div>
     <div class="range"><span>Opacidade</span><input type="range" id="wm-range" min="0" max="100" value="40"><span id="wm-val">40%</span></div>
   </div>
 </section>
 
 <!-- CONTEÚDO PRINCIPAL -->
-<main class="wrap" aria-label="Case Boticário — Somente Imagens">
+<main class="wrap" aria-label="Portfólio — Imagens">
+
+  <!-- INTRO -->
+  <div class="intro" role="note">
+    <p><strong>Exemplos selecionados.</strong> Este portfólio apresenta exemplos de projetos e materiais desenvolvidos em contextos reais de transformação organizacional. Algumas informações e imagens foram adaptadas e/ou redigidas para fins de demonstração profissional.</p>
+    <p>Para visualizar detalhes, clique nas miniaturas para abrir em tela cheia.</p>
+  </div>
 
   <!-- MÉTODOS -->
   <section class="topic" id="metodos">
@@ -115,7 +131,7 @@ footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1p
     <details class="group-desc" open>
       <summary><span class="caret" aria-hidden="true"></span> Ver descrição do grupo</summary>
       <div class="desc-body">
-        Coleção de materiais desenvolvidos para apoiar lideranças e equipes na adoção consciente de práticas ágeis, oferecendo orientação sobre frameworks, cadências e critérios para aplicação efetiva de Scrum e Kanban em diferentes contextos organizacionais.
+        <strong>Exemplos selecionados.</strong> Coleção de materiais desenvolvidos para apoiar lideranças e equipes na adoção consciente de práticas ágeis, oferecendo orientação sobre frameworks, cadências e critérios para aplicação efetiva de Scrum e Kanban em diferentes contextos organizacionais.
       </div>
     </details>
     <div class="strip">
@@ -146,7 +162,7 @@ footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1p
     <details class="group-desc" open>
       <summary><span class="caret" aria-hidden="true"></span> Ver descrição do grupo</summary>
       <div class="desc-body">
-        Conjunto de materiais e registros visuais desenvolvidos para orientar a definição, disseminação e acompanhamento dos OKRs em diferentes níveis da organização. Os conteúdos refletem a aplicação prática da metodologia, desde a construção colaborativa com lideranças até a sustentação por meio de documentação e painéis de governança.
+        <strong>Exemplos selecionados.</strong> Conjunto de materiais e registros visuais desenvolvidos para orientar a definição, disseminação e acompanhamento dos OKRs em diferentes níveis da organização. Os conteúdos refletem a aplicação prática da metodologia, desde a construção colaborativa com lideranças até a sustentação por meio de documentação e painéis de governança.
       </div>
     </details>
     <div class="strip">
@@ -195,7 +211,7 @@ footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1p
     <details class="group-desc" open>
       <summary><span class="caret" aria-hidden="true"></span> Ver descrição do grupo</summary>
       <div class="desc-body">
-        Estrutura metodológica criada para unificar a forma de trabalho entre áreas de produto, tecnologia e negócios, promovendo alinhamento, previsibilidade e fluidez organizacional. Os documentos consolidam políticas, papéis e fluxos que sustentaram a governança escalada da companhia.
+        <strong>Exemplos selecionados.</strong> Estrutura metodológica criada para unificar a forma de trabalho entre áreas de produto, tecnologia e negócios, promovendo alinhamento, previsibilidade e fluidez organizacional. Os documentos consolidam políticas, papéis e fluxos que sustentaram a governança escalável da companhia.
       </div>
     </details>
     <div class="strip">
@@ -238,7 +254,7 @@ footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1p
     <details class="group-desc" open>
       <summary><span class="caret" aria-hidden="true"></span> Ver descrição do grupo</summary>
       <div class="desc-body">
-        Estrutura criada para fortalecer a governança da agilidade na organização, atuando como centro de referência para práticas, métricas e desenvolvimento de lideranças. O COE consolidou pilares de cultura, aprendizado e melhoria contínua, conectando estratégia e operação através de iniciativas de capacitação, coaching e gestão do conhecimento.
+        <strong>Exemplos selecionados.</strong> Estrutura criada para fortalecer a governança da agilidade na organização, atuando como centro de referência para práticas, métricas e desenvolvimento de lideranças. O COE consolidou pilares de cultura, aprendizado e melhoria contínua, conectando estratégia e operação através de iniciativas de capacitação, coaching e gestão do conhecimento.
       </div>
     </details>
     <div class="strip">
@@ -253,17 +269,26 @@ footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1p
 
 </main>
 
-<footer class="site-footer">© <span id="y"></span> Rita Leandra Augustin — Portfólio Profissional</footer>
+<footer class="site-footer">
+  © <span id="y"></span> Rita Leandra Augustin — Portfólio Profissional
+  <br>
+  <small>Conteúdo adaptado e protegido para uso profissional. Reprodução total ou parcial não autorizada.</small>
+</footer>
 
 <!-- LIGHTBOX + EDITOR -->
 <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Visualização de imagem">
   <button class="close" aria-label="Fechar (Esc)" type="button">Fechar ✕</button>
   <div class="lb-toolbar" id="lb-toolbar">
-    <button id="lb-edit-toggle" type="button">Editar máscaras</button>
-    <button id="lb-add" type="button">+ Adicionar</button>
-    <button id="lb-undo" type="button">↩ Remover última</button>
-    <button id="lb-clear" type="button">🗑 Limpar todas</button>
-    <button id="lb-copy" type="button">📋 Copiar máscaras</button>
+    <button id="lb-edit-toggle" type="button" title="Ativar/Desativar edição de máscaras">Editar máscaras</button>
+    <button id="lb-add" type="button" title="Adicionar nova máscara">+ Adicionar</button>
+    <button id="lb-undo" type="button" title="Remover última máscara">↩ Remover última</button>
+    <button id="lb-clear" type="button" title="Limpar todas as máscaras">🗑 Limpar todas</button>
+    <button id="lb-copy" type="button" title="Copiar definições de máscaras">📋 Copiar máscaras</button>
+    <button id="lb-export" type="button" title="Exportar todas as máscaras (JSON)">⬇ Exportar</button>
+    <label class="range-wrap" title="Importar máscaras (JSON)">
+      <span>⬆ Importar</span>
+      <input type="file" id="lb-import" accept="application/json" style="background:transparent;border:none;padding:0;cursor:pointer">
+    </label>
     <div class="range-wrap"><label for="lb-zoom">Zoom</label><input type="range" id="lb-zoom" min="50" max="200" value="100"><span id="lb-zoom-val">100%</span></div>
   </div>
   <div class="lb-viewport">
@@ -279,57 +304,269 @@ footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1p
 </div>
 
 <script>
+/* Utils */
 const $=(q,ctx=document)=>ctx.querySelector(q), $$=(q,ctx=document)=>Array.from(ctx.querySelectorAll(q));
 $('#y').textContent=new Date().getFullYear();
 
-/* privacidade */
-const levelSel=$('#privacy-level'); function applyPrivacyLevel(lv){document.body.classList.toggle('privacy-strong',lv==='strong');}
-applyPrivacyLevel(levelSel.value); levelSel.addEventListener('change',e=>applyPrivacyLevel(e.target.value));
+/* --------- ADMIN MODE --------- */
+const ADMIN=(()=>{
+  const q=location.search+location.hash;
+  const hasFlag=/(^|[?#])admin(=1|=true|$)/i.test(q);
+  const isLocal=['localhost','127.0.0.1'].includes(location.hostname);
+  return hasFlag||isLocal;
+})();
+if(ADMIN){
+  document.documentElement.classList.add('admin');
+  $('#admin-hint')?.style && ($('#admin-hint').style.display='inline');
+  $('.admin-only')?.style && ($('.admin-only').style.display='flex');
+}
 
-/* marca d'água */
-const WM_TEXT="Portfolio", wmToggle=$('#wm-toggle'), wmRange=$('#wm-range'), wmVal=$('#wm-val');
-function applyWm(){const on=wmToggle.checked; const v=(parseInt(wmRange.value,10)||0)/100;
-  document.documentElement.style.setProperty('--wmOpacity',String(v)); wmVal.textContent=(v*100).toFixed(0)+'%';
+/* --------- Watermark --------- */
+const WM_TEXT="Portfolio";
+const wmToggle=$('#wm-toggle'), wmRange=$('#wm-range'), wmVal=$('#wm-val');
+function forceVisitorWM(){
+  // Visitante: watermark sempre ON, controles invisíveis
+  $$('.thumb a[data-src]').forEach(a=>a.setAttribute('data-wm',WM_TEXT));
+  $('#lb-wm').style.display='flex';
+  document.documentElement.style.setProperty('--wmOpacity','0.40');
+}
+function applyWm(){
+  const on = ADMIN ? wmToggle.checked : true;
+  const v = ADMIN ? ((parseInt(wmRange.value,10)||0)/100) : 0.40;
+  document.documentElement.style.setProperty('--wmOpacity',String(v));
+  if(ADMIN && wmVal) wmVal.textContent=(v*100).toFixed(0)+'%';
   $$('.thumb a[data-src]').forEach(a=>{ if(on) a.setAttribute('data-wm',WM_TEXT); else a.removeAttribute('data-wm'); });
-  const lbWm=$('#lb-wm'); lbWm.style.display=on?'flex':'none'; lbWm.textContent=WM_TEXT;}
-wmToggle.addEventListener('change',applyWm); wmRange.addEventListener('input',applyWm); applyWm();
+  const lbWm=$('#lb-wm'); lbWm.style.display=on?'flex':'none'; lbWm.textContent=WM_TEXT;
+}
+if(ADMIN){
+  wmToggle?.addEventListener('change',applyWm);
+  wmRange?.addEventListener('input',applyWm);
+  applyWm();
+}else{
+  // Visitante: força marca d'água e esconde controles
+  forceVisitorWM();
+}
 
-/* presets máscara */
+/* --------- Masks: presets + persistência --------- */
 const PRESETS={"tr-compact":"82,2,16,12","tr-wide":"74,2,24,14","header-bar":"0,0,100,10","footer-bar":"0,88,100,12","bl-compact":"2,84,20,12","br-compact":"78,84,20,12"};
-function parseMasks(el){const ms=[];const p=el.dataset.maskPreset;if(p&&PRESETS[p])ms.push(PRESETS[p]);const manual=(el.dataset.mask||"").split(";").map(s=>s.trim()).filter(Boolean);ms.push(...manual);return ms;}
-function refreshThumbMasks(a){a.querySelectorAll('.mask').forEach(m=>m.remove()); parseMasks(a).forEach(def=>{const [l,t,w,h]=def.split(',').map(Number); if([l,t,w,h].some(n=>isNaN(n)))return; const m=document.createElement('span'); m.className='mask'; m.style.left=l+'%'; m.style.top=t+'%'; m.style.width=w+'%'; m.style.height=h+'%'; a.appendChild(m);});}
-window.addEventListener('load',()=>{$$('.thumb a[data-src]').forEach(a=>{const img=a.querySelector('img'); if(!img)return; const sync=()=>{a.style.width=img.clientWidth+'px';a.style.height=img.clientHeight+'px';}; if(img.complete)sync(); else img.addEventListener('load',sync); if(wmToggle.checked)a.setAttribute('data-wm',WM_TEXT); refreshThumbMasks(a);});});
+const LS_PREFIX='masks::'; // localStorage key prefix
 
-/* lightbox + máscaras */
+function maskKeyForAnchor(a){
+  // Usa o caminho da imagem como chave estável
+  const src = a.getAttribute('data-src') || a.querySelector('img')?.getAttribute('src') || '';
+  return LS_PREFIX + src;
+}
+function loadMasksFromStorage(a){
+  try{
+    const v = localStorage.getItem(maskKeyForAnchor(a));
+    return v ? v : '';
+  }catch(_){ return ''; }
+}
+function saveMasksToStorage(a, value){
+  try{ localStorage.setItem(maskKeyForAnchor(a), value||''); }catch(_){}
+}
+
+function parseMasks(el){
+  const ms=[];
+  // 1) preset
+  const p=el.dataset.maskPreset; if(p&&PRESETS[p]) ms.push(PRESETS[p]);
+  // 2) HTML data-mask (fonte canônica do arquivo)
+  const fromHtml=(el.dataset.mask||'').split(';').map(s=>s.trim()).filter(Boolean);
+  ms.push(...fromHtml);
+  // 3) localStorage (tem prioridade sobre o HTML ao renderizar)
+  const fromLs=(loadMasksFromStorage(el)||'').split(';').map(s=>s.trim()).filter(Boolean);
+  if(fromLs.length) return fromLs; // prioriza o que foi salvo no navegador
+  return ms;
+}
+
+function refreshThumbMasks(a){
+  a.querySelectorAll('.mask').forEach(m=>m.remove());
+  const defs=parseMasks(a);
+  defs.forEach(def=>{
+    const [l,t,w,h]=def.split(',').map(Number);
+    if([l,t,w,h].some(n=>isNaN(n)))return;
+    const m=document.createElement('span');
+    m.className='mask';
+    m.style.left=l+'%'; m.style.top=t+'%'; m.style.width=w+'%'; m.style.height=h+'%';
+    a.appendChild(m);
+  });
+}
+
+/* Ajuste de largura/altura dos anchors + watermark nas thumbs */
+window.addEventListener('load',()=>{
+  $$('.thumb a[data-src]').forEach(a=>{
+    const img=a.querySelector('img'); if(!img) return;
+    const sync=()=>{ a.style.width=img.clientWidth+'px'; a.style.height=img.clientHeight+'px'; };
+    if(img.complete) sync(); else img.addEventListener('load',sync);
+
+    // Marca d'água nas thumbs
+    a.setAttribute('data-wm', WM_TEXT);
+    refreshThumbMasks(a);
+  });
+});
+
+/* --------- Lightbox + edição (somente ADMIN) --------- */
 const lb=$('#lightbox'), lbFig=$('#lb-fig'), lbImg=$('#lb-img'), lbMasksBox=$('#lb-masks'), lbWm=$('#lb-wm');
 const lbTitle=$('#lb-title'), lbDesc=$('#lb-desc'), closeBtn=$('.close',lb);
 const btnEdit=$('#lb-edit-toggle'), btnAdd=$('#lb-add'), btnUndo=$('#lb-undo'), btnClear=$('#lb-clear'), btnCopy=$('#lb-copy');
+const btnExport=$('#lb-export'), inpImport=$('#lb-import');
 const zoomRange=$('#lb-zoom'), zoomVal=$('#lb-zoom-val');
+
 let lastAnchor=null, masksArr=[], editing=false, adding=false, sel=null, startX=0,startY=0; let natW=0,natH=0;
-function setMasksPointer(on){lbMasksBox.style.pointerEvents=on?'auto':'none';}
-function clearLbMasks(){lbMasksBox.innerHTML='';}
-function renderLbMasks(){clearLbMasks(); masksArr.forEach((def,idx)=>{const [l,t,w,h]=def.split(',').map(Number); const m=document.createElement('span'); m.className='mask'; m.dataset.idx=idx; m.style.left=l+'%'; m.style.top=t+'%'; m.style.width=w+'%'; m.style.height=h+'%'; lbMasksBox.appendChild(m);});}
-function persistMasks(){ if(!lastAnchor)return; lastAnchor.dataset.mask=masksArr.join('; '); refreshThumbMasks(lastAnchor); }
-function setZoom(v){zoomRange.value=v; zoomVal.textContent=v+'%'; if(natW>0){lbFig.style.width=(natW*v/100)+'px'; lbFig.style.height=(natH*v/100)+'px';}}
-function openLB(a){ lastAnchor=a; lbImg.onload=()=>{natW=lbImg.naturalWidth||lbImg.width; natH=lbImg.naturalHeight||lbImg.height; setZoom(100); masksArr=parseMasks(a); renderLbMasks(); lbWm.style.display=$('#wm-toggle').checked?'flex':'none'; lbWm.textContent=WM_TEXT; setMasksPointer(false);}; lbImg.src=a.dataset.src; lbTitle.textContent=a.dataset.title||''; lbDesc.textContent=a.dataset.desc||''; lb.classList.add('open'); closeBtn.focus();}
-function closeLB(){persistMasks(); lb.classList.remove('open'); lbImg.src=''; lbTitle.textContent=''; lbDesc.textContent=''; clearLbMasks(); stopAdd(); editing=false; btnEdit.textContent='Editar máscaras'; setMasksPointer(false);}
-document.addEventListener('click',(e)=>{const a=e.target.closest('a[data-src]'); if(a){e.preventDefault(); openLB(a);} if(e.target===lb){closeLB();}});
-closeBtn.addEventListener('click',closeLB); document.addEventListener('keydown',(e)=>{if(e.key==='Escape')closeLB();});
-zoomRange.addEventListener('input',e=>setZoom(parseInt(e.target.value,10)));
-function toggleEdit(){editing=!editing; btnEdit.textContent=editing?'Editar máscaras (Ligado)':'Editar máscaras'; setMasksPointer(editing);}
-function startAdd(){if(!editing)toggleEdit(); adding=true; btnAdd.textContent='+ Adicionando…'; lbFig.style.cursor='crosshair';}
-function stopAdd(){adding=false; btnAdd.textContent='+ Adicionar'; lbFig.style.cursor='auto'; if(sel){sel.remove(); sel=null;}}
-function pct(x,t){return Math.max(0,Math.min(100,x/t*100));}
-lbFig.addEventListener('mousedown',(e)=>{if(!adding)return; const r=lbFig.getBoundingClientRect(); startX=e.clientX-r.left; startY=e.clientY-r.top; sel=document.createElement('span'); sel.className='sel-rect'; sel.style.left=startX+'px'; sel.style.top=startY+'px'; lbFig.appendChild(sel); e.preventDefault();});
-lbFig.addEventListener('mousemove',(e)=>{if(!adding||!sel)return; const r=lbFig.getBoundingClientRect(); const cx=e.clientX-r.left, cy=e.clientY-r.top; const x=Math.min(cx,startX), y=Math.min(cy,startY), w=Math.abs(cx-startX), h=Math.abs(cy-startY); sel.style.left=x+'px'; sel.style.top=y+'px'; sel.style.width=w+'px'; sel.style.height=h+'px';});
-lbFig.addEventListener('mouseup',()=>{if(!adding||!sel)return; const r=lbFig.getBoundingClientRect(); const x=parseFloat(sel.style.left), y=parseFloat(sel.style.top); const w=parseFloat(sel.style.width), h=parseFloat(sel.style.height); const out=[pct(x,r.width).toFixed(0), pct(y,r.height).toFixed(0), pct(w,r.width).toFixed(0), pct(h,r.height).toFixed(0)].join(','); masksArr.push(out); renderLbMasks(); persistMasks(); sel.remove(); sel=null; stopAdd();});
-lbMasksBox.addEventListener('click',(e)=>{if(!editing||!e.ctrlKey)return; const m=e.target.closest('.mask'); if(!m)return; const idx=parseInt(m.dataset.idx,10); if(!Number.isNaN(idx)){masksArr.splice(idx,1); renderLbMasks(); persistMasks();}});
-btnEdit.addEventListener('click',toggleEdit); btnAdd.addEventListener('click',startAdd);
-btnUndo.addEventListener('click',()=>{if(masksArr.length){masksArr.pop(); renderLbMasks(); persistMasks();}});
-btnClear.addEventListener('click',()=>{masksArr=[]; renderLbMasks(); persistMasks();});
-btnCopy.addEventListener('click',()=>{const val=masksArr.join('; '); if(navigator.clipboard){navigator.clipboard.writeText(val).catch(()=>{});} btnCopy.textContent='📋 Copiado!'; setTimeout(()=>btnCopy.textContent='📋 Copiar máscaras',900);});
-applyWm();
+
+function setMasksPointer(on){ lbMasksBox.style.pointerEvents=(ADMIN&&on)?'auto':'none'; }
+function clearLbMasks(){ lbMasksBox.innerHTML=''; }
+function renderLbMasks(){
+  clearLbMasks();
+  masksArr.forEach((def,idx)=>{
+    const [l,t,w,h]=def.split(',').map(Number);
+    const m=document.createElement('span');
+    m.className='mask'; m.dataset.idx=idx;
+    m.style.left=l+'%'; m.style.top=t+'%'; m.style.width=w+'%'; m.style.height=h+'%';
+    lbMasksBox.appendChild(m);
+  });
+}
+function persistMasks(){
+  if(!lastAnchor) return;
+  const flat = masksArr.join('; ');
+  // 1) salva no atributo (tornar visível no DOM da página)
+  lastAnchor.dataset.mask = flat;
+  // 2) salva no navegador (sobrevive a reload no mesmo browser)
+  saveMasksToStorage(lastAnchor, flat);
+  // 3) reflete na miniatura
+  refreshThumbMasks(lastAnchor);
+}
+function setZoom(v){
+  zoomRange.value=v; zoomVal.textContent=v+'%';
+  if(natW>0){ lbFig.style.width=(natW*v/100)+'px'; lbFig.style.height=(natH*v/100)+'px'; }
+}
+
+function openLB(a){
+  lastAnchor=a;
+  lbImg.onload=()=>{
+    natW=lbImg.naturalWidth||lbImg.width; natH=lbImg.naturalHeight||lbImg.height;
+    setZoom(100);
+    // carrega: preset + HTML + localStorage (prioridade localStorage)
+    masksArr=parseMasks(a);
+    renderLbMasks();
+    lbWm.style.display='flex';
+    lbWm.textContent=WM_TEXT;
+    setMasksPointer(false);
+  };
+  lbImg.src=a.dataset.src;
+  lbTitle.textContent=a.dataset.title||'';
+  lbDesc.textContent=a.dataset.desc||'';
+  lb.classList.add('open');
+  closeBtn.focus();
+}
+
+function closeLB(){
+  persistMasks();
+  lb.classList.remove('open');
+  lbImg.src=''; lbTitle.textContent=''; lbDesc.textContent='';
+  clearLbMasks(); stopAdd(); editing=false;
+  if(btnEdit) btnEdit.textContent='Editar máscaras';
+  setMasksPointer(false);
+}
+
+document.addEventListener('click',(e)=>{
+  const a=e.target.closest('a[data-src]');
+  if(a){ e.preventDefault(); openLB(a); }
+  if(e.target===lb){ closeLB(); }
+});
+closeBtn.addEventListener('click',closeLB);
+document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeLB(); });
+
+/* Zoom (sempre visível, sem risco) */
+zoomRange?.addEventListener('input',e=> setZoom(parseInt(e.target.value,10)));
+
+/* ---- Edição: apenas ADMIN ---- */
+function toggleEdit(){ if(!ADMIN) return; editing=!editing; if(btnEdit) btnEdit.textContent=editing?'Editar máscaras (Ligado)':'Editar máscaras'; setMasksPointer(editing); }
+function startAdd(){ if(!ADMIN) return; if(!editing) toggleEdit(); adding=true; if(btnAdd) btnAdd.textContent='+ Adicionando…'; lbFig.style.cursor='crosshair'; }
+function stopAdd(){ adding=false; if(btnAdd) btnAdd.textContent='+ Adicionar'; lbFig.style.cursor='auto'; if(sel){ sel.remove(); sel=null; } }
+function pct(x,t){ return Math.max(0,Math.min(100,x/t*100)); }
+
+lbFig.addEventListener('mousedown',(e)=>{
+  if(!ADMIN || !adding) return;
+  const r=lbFig.getBoundingClientRect(); startX=e.clientX-r.left; startY=e.clientY-r.top;
+  sel=document.createElement('span'); sel.className='sel-rect'; sel.style.left=startX+'px'; sel.style.top=startY+'px';
+  lbFig.appendChild(sel); e.preventDefault();
+});
+lbFig.addEventListener('mousemove',(e)=>{
+  if(!ADMIN || !adding || !sel) return;
+  const r=lbFig.getBoundingClientRect(); const cx=e.clientX-r.left, cy=e.clientY-r.top;
+  const x=Math.min(cx,startX), y=Math.min(cy,startY), w=Math.abs(cx-startX), h=Math.abs(cy-startY);
+  sel.style.left=x+'px'; sel.style.top=y+'px'; sel.style.width=w+'px'; sel.style.height=h+'px';
+});
+lbFig.addEventListener('mouseup',()=>{
+  if(!ADMIN || !adding || !sel) return;
+  const r=lbFig.getBoundingClientRect();
+  const x=parseFloat(sel.style.left), y=parseFloat(sel.style.top);
+  const w=parseFloat(sel.style.width), h=parseFloat(sel.style.height);
+  const out=[pct(x,r.width).toFixed(0), pct(y,r.height).toFixed(0), pct(w,r.width).toFixed(0), pct(h,r.height).toFixed(0)].join(',');
+  masksArr.push(out); renderLbMasks(); persistMasks(); sel.remove(); sel=null; stopAdd();
+});
+lbMasksBox.addEventListener('click',(e)=>{
+  if(!ADMIN || !editing || !e.ctrlKey) return;
+  const m=e.target.closest('.mask'); if(!m) return;
+  const idx=parseInt(m.dataset.idx,10);
+  if(!Number.isNaN(idx)){ masksArr.splice(idx,1); renderLbMasks(); persistMasks(); }
+});
+
+if(ADMIN){
+  btnEdit?.addEventListener('click',toggleEdit);
+  btnAdd?.addEventListener('click',startAdd);
+  btnUndo?.addEventListener('click',()=>{ if(masksArr.length){ masksArr.pop(); renderLbMasks(); persistMasks(); }});
+  btnClear?.addEventListener('click',()=>{ masksArr=[]; renderLbMasks(); persistMasks(); });
+  btnCopy?.addEventListener('click',()=>{
+    const val=masksArr.join('; ');
+    if(navigator.clipboard){ navigator.clipboard.writeText(val).catch(()=>{}); }
+    btnCopy.textContent='📋 Copiado!'; setTimeout(()=>btnCopy.textContent='📋 Copiar máscaras',900);
+  });
+
+  /* ---- Exportar/Importar TODAS as máscaras ---- */
+  btnExport?.addEventListener('click',()=>{
+    const data={}; // { "img/src.png": "l,t,w,h; ..." }
+    $$('.thumb a[data-src]').forEach(a=>{
+      const key=(a.getAttribute('data-src')||'').trim();
+      if(!key) return;
+      // usa o que estiver no STORAGE (prioridade), senão o atributo
+      const fromLs = loadMasksFromStorage(a);
+      const val = fromLs || (a.dataset.mask||'');
+      if(val) data[key]=val;
+    });
+    const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob);
+    const link=document.createElement('a'); link.href=url; link.download='masks.json';
+    document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url);
+  });
+
+  inpImport?.addEventListener('change',(e)=>{
+    const file=e.target.files?.[0]; if(!file) return;
+    const reader=new FileReader();
+    reader.onload=()=>{
+      try{
+        const obj=JSON.parse(reader.result);
+        $$('.thumb a[data-src]').forEach(a=>{
+          const k=a.getAttribute('data-src');
+          if(k && obj[k]){
+            a.dataset.mask=obj[k];
+            saveMasksToStorage(a, obj[k]);
+            refreshThumbMasks(a);
+          }
+        });
+        alert('Máscaras importadas e aplicadas.');
+      }catch(_){ alert('Arquivo inválido.'); }
+    };
+    reader.readAsText(file);
+  });
+}
+
+/* Garante watermark na LB sempre visível (visitantes e admin) */
+(function ensureLBWatermark(){
+  const lbWm=$('#lb-wm');
+  if(lbWm){ lbWm.style.display='flex'; lbWm.textContent=WM_TEXT; }
+})();
 </script>
 </body>
 </html>
-
