@@ -6,7 +6,7 @@
 <title>Portfólio Profissional — Rita Leandra Augustin</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<!-- Analytics (Plausible) — injeta automaticamente com o domínio atual -->
+<!-- Analytics (Plausible) — injeta automaticamente usando o domínio atual -->
 <script>
 (function(){
   var d=document,s=d.createElement('script');
@@ -19,8 +19,10 @@
 
 <style>
 :root{ --bg:#0e0f13; --card:#151821; --text:#e7e9ee; --muted:#9aa3b2; --brand:#7c3aed; --wmOpacity:.40; }
-*{box-sizing:border-box} html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:"Oswald",sans-serif;letter-spacing:.3px}
-a{color:inherit;text-decoration:none} .wrap{max-width:1200px;margin:auto;padding:24px}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:"Oswald",sans-serif;letter-spacing:.3px}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:auto;padding:24px}
 
 /* Header */
 header.site-header{background:linear-gradient(180deg, rgba(124,58,237,.12), transparent 60%);border-bottom:1px solid rgba(124,58,237,.15);position:sticky;top:0;z-index:10;backdrop-filter:saturate(140%) blur(6px)}
@@ -31,21 +33,14 @@ header .name{margin:0 0 4px 0;font-size:28px;font-weight:600;letter-spacing:.5px
 header .role{margin:0;color:#d8dff0;font-size:16px;line-height:1.25}
 header .tagline{margin:6px 0 10px 0;color:#cfd6e6;font-size:14px;letter-spacing:.3px}
 header .contacts{margin:0;padding:10px 0 0 0;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap;font-size:14px;border-top:1px solid rgba(255,255,255,.08)}
-header .contacts a:hover{text-decoration:underline} .dot{color:var(--muted)}
+header .contacts a:hover{text-decoration:underline}
+.dot{color:var(--muted)}
 @media(max-width:720px){.header-block{gap:12px}header .photo{width:74px;height:74px}header .name{font-size:24px}}
 
-<!-- CONTROLES (apenas para admin) -->
-<section class="wrap controls admin-only" style="display:none;">
-  <div class="right">
-    <div class="range"><span>Marca d'água</span><input type="checkbox" id="wm-toggle" checked></div>
-    <div class="range"><span>Opacidade</span><input type="range" id="wm-range" min="0" max="100" value="40"><span id="wm-val">40%</span></div>
-  </div>
-</section>
-
 /* Seções */
-section.topic{margin:32px 0 12px}
-.topic h2{font-size:18px;font-weight:600;margin:0;color:#cfd6e6;letter-spacing:.4px}
-details.group-desc{margin:6px 0 12px;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px}
+section.topic{margin:48px 0 12px}
+.topic h2{font-size:18px;font-weight:600;margin:0 0 14px;color:#cfd6e6;letter-spacing:.4px}
+details.group-desc{margin:8px 0 16px;background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px}
 details.group-desc[open]{border-color:rgba(255,255,255,.14)}
 details.group-desc summary{cursor:pointer;list-style:none;padding:10px 14px;user-select:none;display:flex;align-items:center;gap:10px;color:#cfd6e6}
 details.group-desc summary::-webkit-details-marker{display:none}
@@ -54,7 +49,7 @@ details.group-desc[open] .caret{transform:rotate(45deg)}
 .desc-body{padding:0 14px 12px 42px;color:var(--muted);font-size:14px}
 
 /* Tiras de thumbs */
-.strip{display:flex;gap:12px;overflow-x:auto;padding:12px;background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:14px;scroll-snap-type:x proximity}
+.strip{display:flex;gap:14px;overflow-x:auto;padding:14px;background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:14px;scroll-snap-type:x proximity}
 .thumb{position:relative;flex:0 0 auto;scroll-snap-align:start;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);max-width:260px}
 .thumb a{display:inline-block;position:relative;line-height:0}
 .thumb img{display:block;height:220px;width:auto;filter:blur(0.2px) saturate(0.98) contrast(1)}
@@ -64,7 +59,7 @@ details.group-desc[open] .caret{transform:rotate(45deg)}
 /* Máscaras (visual) */
 .mask{position:absolute;border-radius:6px;backdrop-filter: blur(8px) brightness(.95);-webkit-backdrop-filter: blur(8px) brightness(.95);box-shadow:0 0 0 1px rgba(255,255,255,.06) inset}
 .mask::after{content:"redigido";position:absolute;right:4px;bottom:2px;font-size:10px;letter-spacing:.2px;color:rgba(255,255,255,.75);padding:2px 6px;border-radius:6px;background:rgba(0,0,0,.25)}
-#lb-masks{position:absolute;inset:0;}
+#lb-masks{position:absolute;inset:0}
 
 /* Marca d'água (thumbs) */
 .thumb a[data-wm]::after{content:attr(data-wm);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transform:rotate(-24deg);font-size:26px;font-weight:700;letter-spacing:.15em;color:rgba(0,0,0,var(--wmOpacity));text-shadow:0 1px 0 rgba(255,255,255,.25);text-transform:uppercase;pointer-events:none}
@@ -94,6 +89,32 @@ details.group-desc[open] .caret{transform:rotate(45deg)}
 /* Footer */
 footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1px solid rgba(255,255,255,.06);text-align:center;letter-spacing:.4px}
 
+/* Intro + espaçamentos (overrides) */
+.intro{
+  margin:24px 0 36px;
+  padding:0;
+  background:none;
+  border:0;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.55;
+}
+.intro p{margin:0 0 6px 0}
+.topic{margin:48px 0 12px}
+.topic + .topic{margin-top:56px}
+details.group-desc{margin:8px 0 16px}
+.strip{gap:14px;padding:14px}
+@media(max-width:720px){
+  .intro{margin:20px 0 28px}
+  .topic{margin:36px 0 10px}
+  .topic + .topic{margin-top:42px}
+  details.group-desc{margin:8px 0 14px}
+}
+</style>
+</head>
+
+<body>
+
 <!-- HEADER -->
 <header class="site-header">
   <div class="wrap header-block">
@@ -110,36 +131,23 @@ footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1p
     </div>
   </div>
 </header>
-  
-<!-- INTRO (fora de cartão, mais próximo do cabeçalho) -->
+
+<!-- INTRO (fora de cartão, mais perto do cabeçalho) -->
 <div class="wrap intro" role="note">
   <p>Este portfólio apresenta exemplos de projetos e materiais desenvolvidos em contextos reais de transformação organizacional. Algumas informações e imagens foram adaptadas e/ou redigidas para fins de demonstração profissional.</p>
   <p>Para visualizar detalhes, clique nas miniaturas para abrir em tela cheia.</p>
 </div>
-  
-<!-- CONTROLES (apenas para admin) -->
+
+<!-- CONTROLES (apenas para admin; visitantes não veem nada) -->
 <section class="wrap controls admin-only" style="display:none;">
   <div class="right">
-    <div class="range">
-      <span>Marca d'água</span>
-      <input type="checkbox" id="wm-toggle" checked>
-    </div>
-    <div class="range">
-      <span>Opacidade</span>
-      <input type="range" id="wm-range" min="0" max="100" value="40">
-      <span id="wm-val">40%</span>
-    </div>
+    <div class="range"><span>Marca d'água</span><input type="checkbox" id="wm-toggle" checked></div>
+    <div class="range"><span>Opacidade</span><input type="range" id="wm-range" min="0" max="100" value="40"><span id="wm-val">40%</span></div>
   </div>
 </section>
 
 <!-- CONTEÚDO PRINCIPAL -->
 <main class="wrap" aria-label="Portfólio — Imagens">
-
- <!-- INTRO -->
-<div class="intro" role="note">
-  <p>Este portfólio apresenta exemplos de projetos e materiais desenvolvidos em contextos reais de transformação organizacional. Algumas informações e imagens foram adaptadas e/ou redigidas para fins de demonstração profissional.</p>
-  <p>Para visualizar detalhes, clique nas miniaturas para abrir em tela cheia.</p>
-</div>
 
   <!-- MÉTODOS -->
   <section class="topic" id="metodos">
@@ -147,7 +155,7 @@ footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1p
     <details class="group-desc" open>
       <summary><span class="caret" aria-hidden="true"></span> Ver descrição do grupo</summary>
       <div class="desc-body">
-       </strong> Coleção de materiais desenvolvidos para apoiar lideranças e equipes na adoção consciente de práticas ágeis, oferecendo orientação sobre frameworks, cadências e critérios para aplicação efetiva de Scrum e Kanban em diferentes contextos organizacionais.
+        Coleção de materiais desenvolvidos para apoiar lideranças e equipes na adoção consciente de práticas ágeis, oferecendo orientação sobre frameworks, cadências e critérios para aplicação efetiva de Scrum e Kanban em diferentes contextos organizacionais.
       </div>
     </details>
     <div class="strip">
@@ -178,7 +186,7 @@ footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1p
     <details class="group-desc" open>
       <summary><span class="caret" aria-hidden="true"></span> Ver descrição do grupo</summary>
       <div class="desc-body">
-        </strong> Conjunto de materiais e registros visuais desenvolvidos para orientar a definição, disseminação e acompanhamento dos OKRs em diferentes níveis da organização. Os conteúdos refletem a aplicação prática da metodologia, desde a construção colaborativa com lideranças até a sustentação por meio de documentação e painéis de governança.
+        Conjunto de materiais e registros visuais desenvolvidos para orientar a definição, disseminação e acompanhamento dos OKRs em diferentes níveis da organização. Os conteúdos refletem a aplicação prática da metodologia, desde a construção colaborativa com lideranças até a sustentação por meio de documentação e painéis de governança.
       </div>
     </details>
     <div class="strip">
@@ -227,7 +235,7 @@ footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1p
     <details class="group-desc" open>
       <summary><span class="caret" aria-hidden="true"></span> Ver descrição do grupo</summary>
       <div class="desc-body">
-        </strong> Estrutura metodológica criada para unificar a forma de trabalho entre áreas de produto, tecnologia e negócios, promovendo alinhamento, previsibilidade e fluidez organizacional. Os documentos consolidam políticas, papéis e fluxos que sustentaram a governança escalável da companhia.
+        Estrutura metodológica criada para unificar a forma de trabalho entre áreas de produto, tecnologia e negócios, promovendo alinhamento, previsibilidade e fluidez organizacional. Os documentos consolidam políticas, papéis e fluxos que sustentaram a governança escalável da companhia.
       </div>
     </details>
     <div class="strip">
@@ -270,7 +278,7 @@ footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1p
     <details class="group-desc" open>
       <summary><span class="caret" aria-hidden="true"></span> Ver descrição do grupo</summary>
       <div class="desc-body">
-        </strong> Estrutura criada para fortalecer a governança da agilidade na organização, atuando como centro de referência para práticas, métricas e desenvolvimento de lideranças. O COE consolidou pilares de cultura, aprendizado e melhoria contínua, conectando estratégia e operação através de iniciativas de capacitação, coaching e gestão do conhecimento.
+        Estrutura criada para fortalecer a governança da agilidade na organização, atuando como centro de referência para práticas, métricas e desenvolvimento de lideranças. O COE consolidou pilares de cultura, aprendizado e melhoria contínua, conectando estratégia e operação através de iniciativas de capacitação, coaching e gestão do conhecimento.
       </div>
     </details>
     <div class="strip">
@@ -336,8 +344,7 @@ const ADMIN=(()=>{
 })();
 if(ADMIN){
   document.documentElement.classList.add('admin');
-  $('#admin-hint')?.style && ($('#admin-hint').style.display='inline');
-  $('.admin-only')?.style && ($('.admin-only').style.display='flex');
+  const adminOnly=$('.admin-only'); if(adminOnly) adminOnly.style.display='flex';
 }
 
 /* --------- Watermark --------- */
@@ -345,16 +352,16 @@ const WM_TEXT="Portfolio";
 const wmToggle=$('#wm-toggle'), wmRange=$('#wm-range'), wmVal=$('#wm-val');
 function forceVisitorWM(){
   $$('.thumb a[data-src]').forEach(a=>a.setAttribute('data-wm',WM_TEXT));
-  $('#lb-wm').style.display='flex';
+  const lbwm=$('#lb-wm'); if(lbwm){ lbwm.style.display='flex'; lbwm.textContent=WM_TEXT; }
   document.documentElement.style.setProperty('--wmOpacity','0.40');
 }
 function applyWm(){
-  const on = ADMIN ? wmToggle?.checked : true;
+  const on = ADMIN ? (wmToggle?.checked ?? true) : true;
   const v = ADMIN ? ((parseInt(wmRange?.value||'40',10)||0)/100) : 0.40;
   document.documentElement.style.setProperty('--wmOpacity',String(v));
   if(ADMIN && wmVal) wmVal.textContent=(v*100).toFixed(0)+'%';
   $$('.thumb a[data-src]').forEach(a=>{ if(on) a.setAttribute('data-wm',WM_TEXT); else a.removeAttribute('data-wm'); });
-  const lbWm=$('#lb-wm'); lbWm.style.display=on?'flex':'none'; lbWm.textContent=WM_TEXT;
+  const lbWm=$('#lb-wm'); if(lbWm){ lbWm.style.display=on?'flex':'none'; lbWm.textContent=WM_TEXT; }
 }
 if(ADMIN){
   wmToggle?.addEventListener('change',applyWm);
@@ -375,23 +382,20 @@ async function loadMasksCatalog() {
     document.querySelectorAll('.thumb a[data-src]').forEach(a=>{
       const key = a.getAttribute('data-src');
       if (key && catalog[key]) {
-        a.dataset.mask = catalog[key];                // aplica no DOM
+        a.dataset.mask = catalog[key];
         try { localStorage.setItem('masks::'+key, catalog[key]); } catch(_) {}
       }
     });
   } catch(_) {}
 }
 
-const LS_PREFIX='masks::'; // localStorage key prefix
+const LS_PREFIX='masks::';
 function maskKeyForAnchor(a){
   const src = a.getAttribute('data-src') || a.querySelector('img')?.getAttribute('src') || '';
   return LS_PREFIX + src;
 }
 function loadMasksFromStorage(a){
-  try{
-    const v = localStorage.getItem(maskKeyForAnchor(a));
-    return v ? v : '';
-  }catch(_){ return ''; }
+  try{ return localStorage.getItem(maskKeyForAnchor(a)) || ''; }catch(_){ return ''; }
 }
 function saveMasksToStorage(a, value){
   try{ localStorage.setItem(maskKeyForAnchor(a), value||''); }catch(_){}
@@ -420,14 +424,14 @@ function refreshThumbMasks(a){
   });
 }
 
-/* Ajuste de largura/altura dos anchors + watermark nas thumbs + catálogo */
+/* Ajuste thumbs + watermark + catálogo */
 window.addEventListener('load', async ()=>{
   await loadMasksCatalog();
   document.querySelectorAll('.thumb a[data-src]').forEach(a=>{
     const img = a.querySelector('img'); if(!img) return;
     const sync=()=>{ a.style.width=img.clientWidth+'px'; a.style.height=img.clientHeight+'px'; };
     if(img.complete) sync(); else img.addEventListener('load',sync);
-    a.setAttribute('data-wm','Portfolio'); // watermark nas thumbs
+    a.setAttribute('data-wm',WM_TEXT);
     refreshThumbMasks(a);
   });
 });
@@ -456,9 +460,9 @@ function renderLbMasks(){
 function persistMasks(){
   if(!lastAnchor) return;
   const flat = masksArr.join('; ');
-  lastAnchor.dataset.mask = flat;             // atributo visível
-  saveMasksToStorage(lastAnchor, flat);       // navegador
-  refreshThumbMasks(lastAnchor);              // miniatura
+  lastAnchor.dataset.mask = flat;
+  saveMasksToStorage(lastAnchor, flat);
+  refreshThumbMasks(lastAnchor);
 }
 function setZoom(v){
   zoomRange.value=v; zoomVal.textContent=v+'%';
@@ -481,7 +485,6 @@ function openLB(a){
   lbDesc.textContent=a.dataset.desc||'';
   lb.classList.add('open');
 
-  // Analytics
   window.track && window.track('open_image');
 
   closeBtn.focus();
@@ -551,9 +554,9 @@ if(ADMIN){
     btnCopy.textContent='📋 Copiado!'; setTimeout(()=>btnCopy.textContent='📋 Copiar máscaras',900);
   });
 
-  /* ---- Exportar/Importar TODAS as máscaras ---- */
+  /* Exportar/Importar TODAS as máscaras */
   btnExport?.addEventListener('click',()=>{
-    const data={}; // { "img/src.png": "l,t,w,h; ..." }
+    const data={};
     $$('.thumb a[data-src]').forEach(a=>{
       const key=(a.getAttribute('data-src')||'').trim();
       if(!key) return;
@@ -565,8 +568,6 @@ if(ADMIN){
     const url=URL.createObjectURL(blob);
     const link=document.createElement('a'); link.href=url; link.download='masks.json';
     document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url);
-
-    // Analytics
     window.track && window.track('export_masks');
   });
 
@@ -585,21 +586,12 @@ if(ADMIN){
           }
         });
         alert('Máscaras importadas e aplicadas.');
-
-        // Analytics
         window.track && window.track('import_masks');
-
       }catch(_){ alert('Arquivo inválido.'); }
     };
     reader.readAsText(file);
   });
 }
-
-/* Garante watermark na LB sempre visível (visitantes e admin) */
-(function ensureLBWatermark(){
-  const lbWm=$('#lb-wm');
-  if(lbWm){ lbWm.style.display='flex'; lbWm.textContent=WM_TEXT; }
-})();
 </script>
 </body>
 </html>
