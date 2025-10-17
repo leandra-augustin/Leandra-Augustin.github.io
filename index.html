@@ -34,12 +34,13 @@ header .contacts{margin:0;padding:10px 0 0 0;color:var(--muted);display:flex;gap
 header .contacts a:hover{text-decoration:underline} .dot{color:var(--muted)}
 @media(max-width:720px){.header-block{gap:12px}header .photo{width:74px;height:74px}header .name{font-size:24px}}
 
-/* Controles (visíveis só em admin) */
-.controls{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:8px;flex-wrap:wrap}
-.controls .left,.controls .right{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.range{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:6px 10px;color:var(--muted)}
-.controls .note{font-size:12px;color:#aeb6c7}
-input[type="checkbox"],input[type="range"]{accent-color:#b39df7}
+<!-- CONTROLES (apenas para admin) -->
+<section class="wrap controls admin-only" style="display:none;">
+  <div class="right">
+    <div class="range"><span>Marca d'água</span><input type="checkbox" id="wm-toggle" checked></div>
+    <div class="range"><span>Opacidade</span><input type="range" id="wm-range" min="0" max="100" value="40"><span id="wm-val">40%</span></div>
+  </div>
+</section>
 
 /* Seções */
 section.topic{margin:32px 0 12px}
@@ -131,11 +132,11 @@ footer.site-footer{margin-top:36px;padding:24px;color:var(--muted);border-top:1p
 <!-- CONTEÚDO PRINCIPAL -->
 <main class="wrap" aria-label="Portfólio — Imagens">
 
-  <!-- INTRO -->
-  <div class="intro" role="note">
-    <p><strong>Exemplos selecionados.</strong> Este portfólio apresenta exemplos de projetos e materiais desenvolvidos em contextos reais de transformação organizacional. Algumas informações e imagens foram adaptadas e/ou redigidas para fins de demonstração profissional.</p>
-    <p>Para visualizar detalhes, clique nas miniaturas para abrir em tela cheia.</p>
-  </div>
+ <!-- INTRO -->
+<div class="intro" role="note">
+  <p>Este portfólio apresenta exemplos de projetos e materiais desenvolvidos em contextos reais de transformação organizacional. Algumas informações e imagens foram adaptadas e/ou redigidas para fins de demonstração profissional.</p>
+  <p>Para visualizar detalhes, clique nas miniaturas para abrir em tela cheia.</p>
+</div>
 
   <!-- MÉTODOS -->
   <section class="topic" id="metodos">
